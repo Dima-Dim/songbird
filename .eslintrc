@@ -130,7 +130,8 @@
       {
         "props": true,
         "ignorePropertyModificationsForRegex": [
-          "stateRTK"
+          "stateRTK",
+          "ctx"
         ]
       }
     ]
