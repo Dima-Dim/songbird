@@ -1,4 +1,6 @@
 import * as React from "react";
+import {headerSC as SC} from "./sc";
+import StepsBar from "../steps-bar/steps-bar";
 
 interface HeaderProps {
 
@@ -6,30 +8,12 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = (props) => {
   return (
-    <header>
-      <img src="https://birds-quiz.netlify.app/static/media/logo.4f82cd73.svg" alt="Лого SongBird"/>
-      <p>Score: 0</p>
-      <ul>
-        <li>
-          <button type="button">Разминка</button>
-        </li>
-        <li>
-          <button type="button">Воробьиные</button>
-        </li>
-        <li>
-          <button type="button">Лесные птицы</button>
-        </li>
-        <li>
-          <button type="button">Певчие птицы</button>
-        </li>
-        <li>
-          <button type="button">Хищные птицы</button>
-        </li>
-        <li>
-          <button type="button">Морские птицы</button>
-        </li>
-      </ul>
-    </header>
+    <SC.HEADER>
+      <h1>Угадай птицу по пению</h1>
+      <SC.SCORE_TITLE>Ваш счёт:</SC.SCORE_TITLE>
+      <SC.SCORE_COUNT>0</SC.SCORE_COUNT>
+      <StepsBar/>
+    </SC.HEADER>
   );
 };
 

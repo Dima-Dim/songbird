@@ -1,0 +1,8 @@
+@mixin normal-font($normal-font-size: 14px, $normal-font-height: 1.25, $normal-font-weight: 300, $normal-font-family: ("Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu,
+    Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif)) {
+  font-size: $normal-font-size;
+  line-height: $normal-font-height;
+  font-weight: $normal-font-weight;
+  font-family: $normal-font-family;
+  font-style: normal;
+};

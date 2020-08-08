@@ -16,7 +16,7 @@ const VisualizeAudio: React.FC<VisualizeAudioProps> = (props) => {
     src,
     canvasWidth = 300,
     canvasHeight = 50,
-    canvasPadding = 10,
+    canvasPadding = 0,
     lineWidth = 2,
     lineGapWidth = 1,
     strokeStyle = "#000000",
