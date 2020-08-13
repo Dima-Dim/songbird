@@ -13,7 +13,7 @@ interface AudioPlayerProps {
 const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
   const {
     src,
-    canvasWidth = 615,
+    canvasWidth = 100,
     canvasHeight = 50,
     className,
   } = props;

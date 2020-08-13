@@ -4,8 +4,13 @@ import {cssMixins} from "../../styled-components/mixins";
 
 export const answerOptionsSC = {
   CONTAINER: styled.section`
-    width: ${cssWidth.desktop.CONTENT}px;
+    min-width: ${cssWidth.mobile.CONTENT}px;
+    width: ${cssWidth.mobile.CONTENT_A}%;
     margin: 0 auto 30px;
+
+    @media(min-width: ${cssWidth.desktop.FULL}px) {
+      width: ${cssWidth.desktop.CONTENT}px;
+    }
 
     & > h2 {
       display: flex;
@@ -35,7 +40,11 @@ export const answerOptionsSC = {
     box-sizing: border-box;
     flex-grow: 1;
     flex-shrink: 1;
-    width: 40%;
+    width: 100%;
+
+    @media(min-width: ${cssWidth.tablet.FULL}px) {
+      width: 40%;
+    }
 
     & > input {
       ${cssMixins.visuallyHidden()};

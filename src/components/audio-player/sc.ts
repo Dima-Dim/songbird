@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {cssMixins} from "../../styled-components/mixins";
+import { cssWidth } from "../../styled-components/variables";
 
 export const audioPlayerSC = {
   CONTAINER: styled.div`
@@ -7,11 +8,16 @@ export const audioPlayerSC = {
   `,
   PAPER: styled.div`
     display: flex;
-    gap: 20px;
+    gap: 10px;
     margin-bottom: 20px;
-    padding: 25px;
+    padding: 10px;
     box-shadow: 0 0 30px rgba(219, 221, 222, 0.6);
     border-radius: 10px;
+
+    @media(min-width: ${cssWidth.desktop.FULL}px) {
+      gap: 20px;
+      padding: 25px;
+    }
 `,
   PLAY_BTN: styled.button`
     ${cssMixins.buttonReset()};
@@ -21,13 +27,23 @@ export const audioPlayerSC = {
     background: #76B6F0;
   `,
   VOLUME: styled.div`
+    box-sizing: border-box;
     position: relative;
     display: flex;
     align-items: center;
-    max-width: 285px;
+    max-width: 100%;
     height: 24px;
-    margin-left: 45px;
     padding: 0 30px;
+
+    @media(min-width: ${cssWidth.tablet.FULL}px) {
+      max-width: 285px;
+      margin-left: 25px;
+    }
+
+    @media(min-width: ${cssWidth.desktop.FULL}px) {
+      max-width: 285px;
+      margin-left: 45px;
+    }
 
     & input {
       width: 100%;

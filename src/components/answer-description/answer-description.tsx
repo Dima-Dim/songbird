@@ -15,10 +15,10 @@ const AnswerDescription: React.FC<AnswerDescriptionProps> = (props) => {
         height="50"
         alt="Синица"
       />
-      <h3>Синица <span>Parus major</span></h3>
+      <h3>Синица <span>(Parus major)</span></h3>
       <SC.AUDIO_PLAYER
         src="https://songbird.onsoft24.com/assets/tracks/volka.mp3"
-        canvasWidth={250}
+        canvasWidth={100}
       />
       <p>
         В щебетании синиц различают более 40 различных звуковых сочетаний. Поют они практически круглый год, немного затихая только зимой. Синицы настоящие санитары леса. Одна пара синиц в период гнездования оберегает от

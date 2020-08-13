@@ -5,27 +5,53 @@ import {cssMixins} from "../../styled-components/mixins";
 export const questionSC = {
   CONTAINER: styled.section`
     display: grid;
-    grid-template-columns: 215px 1fr 170px;
-    grid-template-rows: repeat(3, auto);
-    gap: 0 25px;
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: repeat(4, auto);
+    gap: 10px;
     align-items: center;
-    width: ${cssWidth.desktop.CONTENT}px;
+    width: ${cssWidth.mobile.CONTENT_A}%;
     margin: 0 auto 30px;
 
-    & > img {
-      grid-column: 1/2;
-      grid-row: 1/-2;
-      width: 212px;
-      height: 212px;
+    @media(min-width: ${cssWidth.tablet.FULL}px) {
+      grid-template-columns: 100px 1fr 170px;
+    }
+
+    @media(min-width: ${cssWidth.desktop.FULL}px) {
+      grid-template-columns: 215px 1fr 170px;
+      gap: 0 25px;
+      width: ${cssWidth.desktop.CONTENT}px;
     }
 
     & > h2 {
-      grid-column: 2/3;
+      grid-column: 1/-1;
       grid-row: 1/2;
       margin: 0;
       padding: 0;
       align-self: start;
       ${cssFonts.h2.normal.BOLD};
+
+      @media(min-width: ${cssWidth.tablet.FULL}px) {
+        grid-column: 2/3;
+        grid-row: 1/2;
+      }
+    }
+
+    & > img {
+      grid-column: 1/2;
+      grid-row: 2/3;
+      width: 100px;
+      height: 120px;
+      object-fit: contain;
+
+      @media(min-width: ${cssWidth.tablet.FULL}px) {
+        grid-column: 1/2;
+        grid-row: 1/-2;
+      }
+
+      @media(min-width: ${cssWidth.desktop.FULL}px) {
+        width: 212px;
+        height: 212px;
+      }
     }
 
     & > div {
@@ -35,17 +61,19 @@ export const questionSC = {
 
     & > p {
       grid-column: 1/2;
-      grid-row: -1/-2;
       margin: 0;
       padding: 0;
+
+      @media(min-width: ${cssWidth.tablet.FULL}px) {
+        grid-row: -1/-2;
+      }
     }
   `,
   NEXT_STEP_BTN: styled.button`
     ${cssMixins.buttonReset()};
     position: relative;
     box-sizing: border-box;
-    grid-column: -1/-2;
-    grid-row: 2/3;
+    grid-column: 1/-1;
     align-self: start;
     max-width: 100%;
     margin-top: 16px;
@@ -58,16 +86,31 @@ export const questionSC = {
     background-position: right;
     border-radius: 10px;
 
+    @media(min-width: ${cssWidth.tablet.FULL}px) {
+      grid-column: -1/-2;
+      grid-row: 2/3;
+    }
+
     &::before {
       content: "";
       position: absolute;
       right: 20px;
       top: -15px;
-      width: 95px;
-      height: 100px;
-      background-image: url("data:image/svg+xml,%3Csvg width='87' height='100' viewBox='0 0 87 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M86.2666 48.4608L40.8317 0.634854C40.4437 0.227246 39.9177 -0.00101515 39.3696 3.87124e-06H2.19567C1.05509 -0.00223797 0.128842 0.9695 0.126712 2.17011C0.125744 2.74891 0.344141 3.30428 0.733499 3.71311L44.7102 50.0001L0.733499 96.2869C-0.0740654 97.1347 -0.0756141 98.5112 0.72982 99.3613C1.11821 99.7711 1.64581 100.001 2.19567 100H39.3696C39.9177 100.001 40.4437 99.7728 40.8317 99.3652L86.2666 51.539C87.0741 50.6912 87.0757 49.3147 86.2702 48.4646C86.2689 48.4634 86.2677 48.4622 86.2666 48.4608Z' fill='rgba(237, 237, 237, 0.5)'/%3E%3C/svg%3E");
+      width: 70px;
+      height: 74px;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 87 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M86.2666 48.4608L40.8317 0.634854C40.4437 0.227246 39.9177 -0.00101515 39.3696 3.87124e-06H2.19567C1.05509 -0.00223797 0.128842 0.9695 0.126712 2.17011C0.125744 2.74891 0.344141 3.30428 0.733499 3.71311L44.7102 50.0001L0.733499 96.2869C-0.0740654 97.1347 -0.0756141 98.5112 0.72982 99.3613C1.11821 99.7711 1.64581 100.001 2.19567 100H39.3696C39.9177 100.001 40.4437 99.7728 40.8317 99.3652L86.2666 51.539C87.0741 50.6912 87.0757 49.3147 86.2702 48.4646C86.2689 48.4634 86.2677 48.4622 86.2666 48.4608Z' fill='rgba(237, 237, 237, 0.5)'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       z-index: -1;
+
+      @media(min-width: ${cssWidth.tablet.FULL}px) {
+        width: 87px;
+        height: 90px;
+      }
+
+      @media(min-width: ${cssWidth.desktop.FULL}px) {
+        width: 95px;
+        height: 100px;
+      }
     }
   `,
 };
