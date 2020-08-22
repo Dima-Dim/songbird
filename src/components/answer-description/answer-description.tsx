@@ -26,8 +26,6 @@ const AnswerDescription: React.FC<AnswerDescriptionProps> = (props) => {
       <h2>Ваш ответ</h2>
       <img
         src={imageSrc}
-        width="100"
-        height="50"
         alt={titleRu}
       />
       <h3>{titleRu} <span lang="en">({titleEn})</span></h3>

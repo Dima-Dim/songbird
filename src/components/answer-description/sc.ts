@@ -11,9 +11,13 @@ export const answerDescriptionPropsSC = {
     width: ${cssWidth.mobile.CONTENT_A}%;
     margin: 0 auto 30px;
 
+    @media(min-width: ${cssWidth.tablet.FULL}px) {
+      gap: 20px;
+    }
+
     @media(min-width: ${cssWidth.desktop.FULL}px) {
       grid-template-columns: 165px 370px 1fr;
-      gap: 0 30px;
+      gap: 30px;
       width: ${cssWidth.desktop.CONTENT}px;
     }
 
