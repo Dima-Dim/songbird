@@ -8,12 +8,16 @@ export const selectQuestions = createSelector(
   (questionsState) => questionsState?.data
 );
 
-
 const selectGameState = (state: RootState) => state?.game;
 
 export const selectCurrentStep = createSelector(
   selectGameState,
   (questionsState) => questionsState?.currentStep
+);
+
+export const selectStepComplete = createSelector(
+  selectGameState,
+  (questionsState) => questionsState?.stepComplete
 );
 
 const selectCurrentGenre = createSelector(

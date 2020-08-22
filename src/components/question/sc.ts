@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {cssFonts, cssWidth} from "../../styled-components/variables";
 import {cssMixins} from "../../styled-components/mixins";
+import {helperClassNames} from "../../config";
 
 export const questionSC = {
   CONTAINER: styled.section`
@@ -85,6 +86,10 @@ export const questionSC = {
     background-repeat: no-repeat;
     background-position: right;
     border-radius: 10px;
+
+    &:not(.${helperClassNames.ACTIVE}) {
+      filter: grayscale();
+    }
 
     @media(min-width: ${cssWidth.tablet.FULL}px) {
       grid-column: -1/-2;

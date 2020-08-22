@@ -4,6 +4,7 @@ import {QuestionsGenre} from "../../types/questions-types";
 
 interface gameState {
   currentStep: number;
+  stepComplete: boolean;
   currentGenre: QuestionsGenre | null;
   currentAnswer: number | null;
   wrongAnswers: number[],
@@ -15,6 +16,7 @@ const initialState: gameState = {
   currentGenre: null,
   currentAnswer: null,
   wrongAnswers: [],
+  stepComplete: false,
 };
 
 export const gameSlice = createSlice(
@@ -32,6 +34,7 @@ export const gameSlice = createSlice(
         stateRTK.currentAnswer = action.payload.id;
         if(action.payload.isRight) {
           stateRTK.rightAnswers = action.payload.id;
+          stateRTK.stepComplete = true;
         } else {
           stateRTK.wrongAnswers.push(action.payload.id);
         }

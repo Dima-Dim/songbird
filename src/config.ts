@@ -19,4 +19,5 @@ export const assetsUrl = {
 export const helperClassNames = {
   RIGHT: `right-item-for-sc`,
   WRONG: `wrong-item-for-sc`,
+  ACTIVE: `active-item-for-sc`,
 };
