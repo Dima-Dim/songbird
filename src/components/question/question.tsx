@@ -13,7 +13,7 @@ const Question: React.FC<QuestionProps> = (props) => {
     question,
   } = props;
 
-  const audioSrc = question && `${assetsUrl.MAIN}/${assetsUrl.AUDIO_FOLDER}/${question.audioFile}`;
+  const audioSrc = question && `${assetsUrl.MAIN}/${assetsUrl.AUDIO_FOLDER}/${question.audioFileUrl}`;
 
   return (
     <SC.CONTAINER>
