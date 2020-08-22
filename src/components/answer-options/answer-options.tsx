@@ -21,10 +21,11 @@ const AnswerOptions: React.FC<AnswerOptionsProps> = (props) => {
   }
 
   const getListItem = (data) => {
-    return data.map((option) => (
+    return data.map((option, index) => (
       <SC.ITEM key={option.name.en}>
         <AnswerOption
           option={option}
+          optionId={index}
           onChange={onChange}
         />
       </SC.ITEM>

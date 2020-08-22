@@ -3,12 +3,14 @@ import {QuestionOption} from "../../types/questions-types";
 
 interface AnswerOptionProps {
   option: QuestionOption;
+  optionId: number;
   onChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const AnswerOption: React.FC<AnswerOptionProps> = (props) => {
   const {
     option,
+    optionId,
     onChange,
   } = props;
 
@@ -17,12 +19,12 @@ const AnswerOption: React.FC<AnswerOptionProps> = (props) => {
   return (
     <>
       <input
-        id={title}
+        id={optionId.toString()}
         type="radio"
         name="answer"
         onChange={onChange}
       />
-      <label htmlFor={title}>
+      <label htmlFor={optionId.toString()}>
         {title}
       </label>
     </>

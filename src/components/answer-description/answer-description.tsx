@@ -1,28 +1,43 @@
 import * as React from "react";
+import {QuestionOption} from "../../types/questions-types";
+import {assetsUrl} from "../../config";
+import UseGettingTextFromUrl from "../../hooks/use-getting-text-from-url/use-getting-text-from-url";
 import {answerDescriptionPropsSC as SC} from "./sc";
 
 interface AnswerDescriptionProps {
-
+  option: QuestionOption;
 }
 
 const AnswerDescription: React.FC<AnswerDescriptionProps> = (props) => {
+  const {
+    option,
+  } = props;
+
+  const audioSrc = `${assetsUrl.MAIN}/${assetsUrl.AUDIO_FOLDER}/${option.audioFileUrl}`;
+  const imageSrc = `${assetsUrl.MAIN}/${assetsUrl.IMAGE_FOLDER}/${option.imageFileUrl}`;
+  const textSrc = `${assetsUrl.MAIN}/${assetsUrl.TEXT_FOLDER}/${option.textFileUrl.ru}`;
+  const titleRu = option.name.ru;
+  const titleEn = option.name.en;
+
+  const description = UseGettingTextFromUrl({url: textSrc});
+
   return (
     <SC.CONTAINER>
       <h2>Ваш ответ</h2>
       <img
-        src="https://songbird.onsoft24.com/assets/images/bf3d5eb6-15bf-4945-b5c2-8be72b9736a4.jpg"
+        src={imageSrc}
         width="100"
         height="50"
-        alt="Синица"
+        alt={titleRu}
       />
-      <h3>Синица <span>(Parus major)</span></h3>
+      <h3>{titleRu} <span lang="en">({titleEn})</span></h3>
       <SC.AUDIO_PLAYER
-        src="https://songbird.onsoft24.com/assets/tracks/volka.mp3"
+        src={audioSrc}
         canvasWidth={100}
+        key={audioSrc}
       />
       <p>
-        В щебетании синиц различают более 40 различных звуковых сочетаний. Поют они практически круглый год, немного затихая только зимой. Синицы настоящие санитары леса. Одна пара синиц в период гнездования оберегает от
-        вредителей десятки деревьев.
+        {description}
       </p>
     </SC.CONTAINER>
   );
