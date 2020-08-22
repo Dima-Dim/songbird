@@ -1,4 +1,5 @@
 import * as React from "react";
+import {useRef, useState} from "react";
 import VisualizeAudio from "../visualize-audio/visualize-audio";
 import {audioVisualization} from "../../config";
 import {audioPlayerSC as SC} from "./sc";
@@ -18,6 +19,23 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
     className,
   } = props;
 
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const [isPlayed, setIsPlayed] = useState(false);
+
+  const handlePlayBtnClick = () => {
+    if (audioRef.current) {
+      if (!isPlayed) {
+        audioRef.current.play();
+      } else {
+        audioRef.current.pause();
+      }
+      setIsPlayed((s) => {
+        return !s;
+      });
+    }
+  };
+
   return (
     <SC.CONTAINER
       className={className}
@@ -25,10 +43,13 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
       <SC.PAPER>
         <SC.PLAY_BTN
           type="button"
+          onClick={handlePlayBtnClick}
         >
-          <p>Play</p>
+          <p>{isPlayed ? `Pause` : `Play`}</p>
         </SC.PLAY_BTN>
-        <audio>
+        <audio
+          ref={audioRef}
+        >
           <source
             src={src}
             type="audio/mpeg"
