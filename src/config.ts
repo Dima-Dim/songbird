@@ -4,3 +4,13 @@ export const audioVisualization = {
   LINE_GAP_WIDTH: 1,
   STROKE_STYLE: "#76B6F0",
 };
+
+export const statusCodes = {
+  OK: 200,
+};
+
+export const assetsUrl = {
+  MAIN: "https://songbird.onsoft24.com/assets",
+  AUDIO_FOLDER: "tracks",
+  IMAGE_FOLDER: "images",
+};

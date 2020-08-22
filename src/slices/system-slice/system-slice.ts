@@ -1,4 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {ReduxStateEntities} from "../../reducers/reducers-config";
 
 export interface SystemReducerState {
   errors: Record<string, string> | null;
@@ -11,7 +12,7 @@ const initialState: SystemReducerState = {
 };
 
 export const systemSlice = createSlice({
-  name: `system`,
+  name: ReduxStateEntities.SYSTEM,
   initialState,
   reducers: {
     errorsAdd: (stateRTK, action) => {
