@@ -9,8 +9,11 @@ export interface QuestionsGenreData {
 }
 
 export interface QuestionOption {
-  audioFile: string;
-  imageFile: string;
+  audioFileUrl: string;
+  imageFileUrl: string;
+  textFileUrl: {
+    ru: string;
+  };
   author: {
     en: string;
     ru: string;

@@ -8,8 +8,11 @@ export const questions:QuestionsData = {
     },
     options: [
       {
-        audioFile: "f-1.mp3",
-        imageFile: "f-1.jpg",
+        audioFileUrl: "f-1.mp3",
+        imageFileUrl: "f-1.jpg",
+        textFileUrl: {
+          ru: "f-1.txt",
+        },
         author: {
           en: "Michael Moorcock",
           ru: "Майкл Муркок",
@@ -20,8 +23,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "f-2.mp3",
-        imageFile: "f-2.jpg",
+        audioFileUrl: "f-2.mp3",
+        imageFileUrl: "f-2.jpg",
+        textFileUrl: {
+          ru: "f-2.txt",
+        },
         author: {
           en: "Clive Staples Lewis",
           ru: "Клайв Степлз Льюис",
@@ -32,8 +38,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "f-3.mp3",
-        imageFile: "f-3.jpg",
+        audioFileUrl: "f-3.mp3",
+        imageFileUrl: "f-3.jpg",
+        textFileUrl: {
+          ru: "f-3.txt",
+        },
         author: {
           en: "Terry Pratchett",
           ru: "Терри Пратчетт",
@@ -44,8 +53,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "f-4.mp3",
-        imageFile: "f-4.jpg",
+        audioFileUrl: "f-4.mp3",
+        imageFileUrl: "f-4.jpg",
+        textFileUrl: {
+          ru: "f-4.txt",
+        },
         author: {
           en: "Clive Staples Lewis",
           ru: "Клайв Степлз Льюис",
@@ -56,8 +68,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "f-5.mp3",
-        imageFile: "f-5.jpg",
+        audioFileUrl: "f-5.mp3",
+        imageFileUrl: "f-5.jpg",
+        textFileUrl: {
+          ru: "f-5.txt",
+        },
         author: {
           en: "J.K. Rowling",
           ru: "Дж. К. Роулинг",
@@ -68,8 +83,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "f-6.mp3",
-        imageFile: "f-6.jpg",
+        audioFileUrl: "f-6.mp3",
+        imageFileUrl: "f-6.jpg",
+        textFileUrl: {
+          ru: "f-6.txt",
+        },
         author: {
           en: "Clive Staples Lewis",
           ru: "Клайв Степлз Льюис",
@@ -88,8 +106,11 @@ export const questions:QuestionsData = {
     },
     options: [
       {
-        audioFile: "ch-1.mp3",
-        imageFile: "ch-1.jpg",
+        audioFileUrl: "ch-1.mp3",
+        imageFileUrl: "ch-1.jpg",
+        textFileUrl: {
+          ru: "ch-1.txt",
+        },
         author: {
           en: "Victor Dragunsky",
           ru: "Виктор Драгунский",
@@ -100,8 +121,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "ch-2.mp3",
-        imageFile: "ch-2.jpg",
+        audioFileUrl: "ch-2.mp3",
+        imageFileUrl: "ch-2.jpg",
+        textFileUrl: {
+          ru: "ch-2.txt",
+        },
         author: {
           en: "Sofia Prokofieva",
           ru: "Софья Прокофьева",
@@ -112,8 +136,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "ch-3.mp3",
-        imageFile: "ch-3.jpg",
+        audioFileUrl: "ch-3.mp3",
+        imageFileUrl: "ch-3.jpg",
+        textFileUrl: {
+          ru: "ch-3.txt",
+        },
         author: {
           en: "Lev Kassil",
           ru: "Лев Кассиль",
@@ -124,8 +151,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "ch-4.mp3",
-        imageFile: "ch-4.jpg",
+        audioFileUrl: "ch-4.mp3",
+        imageFileUrl: "ch-4.jpg",
+        textFileUrl: {
+          ru: "ch-4.txt",
+        },
         author: {
           en: "Linevsky Alexander",
           ru: "Линевский Александр",
@@ -136,8 +166,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "ch-5.mp3",
-        imageFile: "ch-5.jpg",
+        audioFileUrl: "ch-5.mp3",
+        imageFileUrl: "ch-5.jpg",
+        textFileUrl: {
+          ru: "ch-5.txt",
+        },
         author: {
           en: "Levshin Vladimir Arturovich",
           ru: "Левшин Владимир Артурович",
@@ -148,8 +181,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "ch-6.mp3",
-        imageFile: "ch-6.jpg",
+        audioFileUrl: "ch-6.mp3",
+        imageFileUrl: "ch-6.jpg",
+        textFileUrl: {
+          ru: "ch-6.txt",
+        },
         author: {
           en: "Bulychev Kir",
           ru: "Булычев Кир",
@@ -168,8 +204,11 @@ export const questions:QuestionsData = {
     },
     options: [
       {
-        audioFile: "d-1.mp3",
-        imageFile: "d-1.jpg",
+        audioFileUrl: "d-1.mp3",
+        imageFileUrl: "d-1.jpg",
+        textFileUrl: {
+          ru: "d-1.txt",
+        },
         author: {
           en: "Chingiz Abdullaev",
           ru: "Чингиз Абдуллаев",
@@ -180,8 +219,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "d-2.mp3",
-        imageFile: "d-2.jpg",
+        audioFileUrl: "d-2.mp3",
+        imageFileUrl: "d-2.jpg",
+        textFileUrl: {
+          ru: "d-2.txt",
+        },
         author: {
           en: "Chingiz Abdullaev",
           ru: "Чингиз Абдуллаев",
@@ -192,8 +234,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "d-3.mp3",
-        imageFile: "d-3.jpg",
+        audioFileUrl: "d-3.mp3",
+        imageFileUrl: "d-3.jpg",
+        textFileUrl: {
+          ru: "d-3.txt",
+        },
         author: {
           en: "Gelbraith Robert",
           ru: "Гелбрейт Роберт",
@@ -204,8 +249,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "d-4.mp3",
-        imageFile: "d-4.jpg",
+        audioFileUrl: "d-4.mp3",
+        imageFileUrl: "d-4.jpg",
+        textFileUrl: {
+          ru: "d-4.txt",
+        },
         author: {
           en: "Darya Dontsova",
           ru: "Дарья Донцова",
@@ -216,8 +264,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "d-5.mp3",
-        imageFile: "d-5.jpg",
+        audioFileUrl: "d-5.mp3",
+        imageFileUrl: "d-5.jpg",
+        textFileUrl: {
+          ru: "d-5.txt",
+        },
         author: {
           en: "Agatha Christie",
           ru: "Агата Кристи",
@@ -228,8 +279,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "d-6.mp3",
-        imageFile: "d-6.jpg",
+        audioFileUrl: "d-6.mp3",
+        imageFileUrl: "d-6.jpg",
+        textFileUrl: {
+          ru: "d-6.txt",
+        },
         author: {
           en: "Akunin Boris",
           ru: "Акунин Борис",
@@ -248,8 +302,11 @@ export const questions:QuestionsData = {
     },
     options: [
       {
-        audioFile: "fc-1.mp3",
-        imageFile: "fc-1.jpg",
+        audioFileUrl: "fc-1.mp3",
+        imageFileUrl: "fc-1.jpg",
+        textFileUrl: {
+          ru: "fc-1.txt",
+        },
         author: {
           en: "King Stephen",
           ru: "Кинг Стивен",
@@ -260,8 +317,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "fc-2.mp3",
-        imageFile: "fc-2.jpg",
+        audioFileUrl: "fc-2.mp3",
+        imageFileUrl: "fc-2.jpg",
+        textFileUrl: {
+          ru: "fc-2.txt",
+        },
         author: {
           en: "King Stephen",
           ru: "Кинг Стивен",
@@ -272,8 +332,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "fc-3.mp3",
-        imageFile: "fc-3.jpg",
+        audioFileUrl: "fc-3.mp3",
+        imageFileUrl: "fc-3.jpg",
+        textFileUrl: {
+          ru: "fc-3.txt",
+        },
         author: {
           en: "Rothfuss Patrick",
           ru: "Ротфусс Патрик",
@@ -284,8 +347,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "fc-4.mp3",
-        imageFile: "fc-4.jpg",
+        audioFileUrl: "fc-4.mp3",
+        imageFileUrl: "fc-4.jpg",
+        textFileUrl: {
+          ru: "fc-4.txt",
+        },
         author: {
           en: "Jules Verne",
           ru: "Жюль Верн",
@@ -296,8 +362,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "fc-5.mp3",
-        imageFile: "fc-5.jpg",
+        audioFileUrl: "fc-5.mp3",
+        imageFileUrl: "fc-5.jpg",
+        textFileUrl: {
+          ru: "fc-5.txt",
+        },
         author: {
           en: "John Wyndham",
           ru: "Джон Уиндэм",
@@ -308,8 +377,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "fc-6.mp3",
-        imageFile: "fc-6.jpg",
+        audioFileUrl: "fc-6.mp3",
+        imageFileUrl: "fc-6.jpg",
+        textFileUrl: {
+          ru: "fc-6.txt",
+        },
         author: {
           en: "Frank Herbert",
           ru: "Фрэнк Герберт",
@@ -328,8 +400,11 @@ export const questions:QuestionsData = {
     },
     options: [
       {
-        audioFile: "n-1.mp3",
-        imageFile: "n-1.jpg",
+        audioFileUrl: "n-1.mp3",
+        imageFileUrl: "n-1.jpg",
+        textFileUrl: {
+          ru: "n-1.txt",
+        },
         author: {
           en: "Elizabeth Gilbert",
           ru: "Элизабет Гилберт",
@@ -340,8 +415,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "n-2.mp3",
-        imageFile: "n-2.jpg",
+        audioFileUrl: "n-2.mp3",
+        imageFileUrl: "n-2.jpg",
+        textFileUrl: {
+          ru: "n-2.txt",
+        },
         author: {
           en: "Gregory Philip",
           ru: "Грегори Филиппа",
@@ -352,8 +430,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "n-3.mp3",
-        imageFile: "n-3.jpg",
+        audioFileUrl: "n-3.mp3",
+        imageFileUrl: "n-3.jpg",
+        textFileUrl: {
+          ru: "n-3.txt",
+        },
         author: {
           en: "Arthur Golden",
           ru: "Артур Голден",
@@ -364,8 +445,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "n-4.mp3",
-        imageFile: "n-4.jpg",
+        audioFileUrl: "n-4.mp3",
+        imageFileUrl: "n-4.jpg",
+        textFileUrl: {
+          ru: "n-4.txt",
+        },
         author: {
           en: "Philip Gregory",
           ru: "Филиппа Грегори",
@@ -376,8 +460,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "n-5.mp3",
-        imageFile: "n-5.jpg",
+        audioFileUrl: "n-5.mp3",
+        imageFileUrl: "n-5.jpg",
+        textFileUrl: {
+          ru: "n-5.txt",
+        },
         author: {
           en: "Mitchell Margaret",
           ru: "Митчелл Маргарет",
@@ -388,8 +475,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "n-6.mp3",
-        imageFile: "n-6.jpg",
+        audioFileUrl: "n-6.mp3",
+        imageFileUrl: "n-6.jpg",
+        textFileUrl: {
+          ru: "n-6.txt",
+        },
         author: {
           en: "Archibald Cronin",
           ru: "Арчибальд Кронин",
@@ -408,8 +498,11 @@ export const questions:QuestionsData = {
     },
     options: [
       {
-        audioFile: "cl-1.mp3",
-        imageFile: "cl-1.jpg",
+        audioFileUrl: "cl-1.mp3",
+        imageFileUrl: "cl-1.jpg",
+        textFileUrl: {
+          ru: "cl-1.txt",
+        },
         author: {
           en: "Fedor Dostoevsky",
           ru: "Фёдор Достоевский",
@@ -420,8 +513,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "cl-2.mp3",
-        imageFile: "cl-2.jpg",
+        audioFileUrl: "cl-2.mp3",
+        imageFileUrl: "cl-2.jpg",
+        textFileUrl: {
+          ru: "cl-2.txt",
+        },
         author: {
           en: "Ivan Goncharov",
           ru: "Иван Гончаров",
@@ -432,8 +528,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "cl-3.mp3",
-        imageFile: "cl-3.jpg",
+        audioFileUrl: "cl-3.mp3",
+        imageFileUrl: "cl-3.jpg",
+        textFileUrl: {
+          ru: "cl-3.txt",
+        },
         author: {
           en: "Nikolay Gogol",
           ru: "Николай Гоголь",
@@ -444,8 +543,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "cl-4.mp3",
-        imageFile: "cl-4.jpg",
+        audioFileUrl: "cl-4.mp3",
+        imageFileUrl: "cl-4.jpg",
+        textFileUrl: {
+          ru: "cl-4.txt",
+        },
         author: {
           en: "Alexey Tolstoy",
           ru: "Алексей Толстой",
@@ -456,8 +558,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "cl-5.mp3",
-        imageFile: "cl-5.jpg",
+        audioFileUrl: "cl-5.mp3",
+        imageFileUrl: "cl-5.jpg",
+        textFileUrl: {
+          ru: "cl-5.txt",
+        },
         author: {
           en: "Nikolay Gogol",
           ru: "Николай Гоголь",
@@ -468,8 +573,11 @@ export const questions:QuestionsData = {
         },
       },
       {
-        audioFile: "cl-6.mp3",
-        imageFile: "cl-6.jpg",
+        audioFileUrl: "cl-6.mp3",
+        imageFileUrl: "cl-6.jpg",
+        textFileUrl: {
+          ru: "cl-6.txt",
+        },
         author: {
           en: "Nikolay Leskov",
           ru: "Николай Лесков",

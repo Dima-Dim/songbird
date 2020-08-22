@@ -13,4 +13,5 @@ export const assetsUrl = {
   MAIN: "https://songbird.onsoft24.com/assets",
   AUDIO_FOLDER: "tracks",
   IMAGE_FOLDER: "images",
+  TEXT_FOLDER: "texts",
 };
