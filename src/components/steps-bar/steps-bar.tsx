@@ -1,14 +1,16 @@
 import * as React from "react";
+import {useSelector} from "react-redux";
 import {stepsBarSC as SC} from "./sc";
+import {selectCurrentStep, selectQuestionGenres} from "../../selectors";
 
 interface StepsBarProps {
 
 }
 
 const StepsBar: React.FC<StepsBarProps> = (props) => {
-  const currentStep = 1;
-  const stepWidth = 170;
-  const activeBarWidth = currentStep * stepWidth;
+  const currentStep = useSelector(selectCurrentStep);
+  const totalSteps = useSelector(selectQuestionGenres)?.length;
+  const activeBarWidth = ((currentStep + 1) / totalSteps) * 100;
 
   return (
     <SC.LIST

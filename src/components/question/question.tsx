@@ -1,11 +1,12 @@
 import * as React from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import classnames from "classnames";
 import AudioPlayer from "../audio-player/audio-player";
 import {questionSC as SC} from "./sc";
 import {QuestionOption} from "../../types/questions-types";
 import {assetsUrl, helperClassNames} from "../../config";
 import {selectStepComplete} from "../../selectors";
+import {rtkSlices} from "../../reducers/root-reducer";
 
 interface QuestionProps {
   question: QuestionOption | null;
@@ -16,12 +17,18 @@ const Question: React.FC<QuestionProps> = (props) => {
     question,
   } = props;
 
+  const dispatch = useDispatch();
+
   const stepComplete = useSelector(selectStepComplete);
   const audioSrc = question && `${assetsUrl.MAIN}/${assetsUrl.AUDIO_FOLDER}/${question.audioFileUrl}`;
 
   const nextStepBtnClassNames = classnames({
     [helperClassNames.ACTIVE]: stepComplete,
   });
+
+  const handleNextStepBtnClick = () => {
+    dispatch(rtkSlices.game.actions.changeStep());
+  };
 
   return (
     <SC.CONTAINER>
@@ -42,6 +49,7 @@ const Question: React.FC<QuestionProps> = (props) => {
         className={nextStepBtnClassNames}
         type="button"
         disabled={!stepComplete}
+        onClick={handleNextStepBtnClick}
       >
         Следующий вопрос
       </SC.NEXT_STEP_BTN>

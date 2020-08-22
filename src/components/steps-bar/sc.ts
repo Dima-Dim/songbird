@@ -35,8 +35,8 @@ export const stepsBarSC = {
       const str: string[] = [];
       const {activeBarWidth} = props.theme;
 
-      if (activeBarWidth) {
-        str.push(`width: ${activeBarWidth}px;`);
+    if (activeBarWidth) {
+        str.push(`width: ${activeBarWidth}%;`);
       }
       return str.join("\n");
     }};

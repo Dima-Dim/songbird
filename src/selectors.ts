@@ -8,6 +8,11 @@ export const selectQuestions = createSelector(
   (questionsState) => questionsState?.data
 );
 
+export const selectQuestionGenres = createSelector(
+  selectQuestions,
+  (questions) => questions && Object.keys(questions)
+);
+
 const selectGameState = (state: RootState) => state?.game;
 
 export const selectCurrentScore = createSelector(
@@ -49,5 +54,5 @@ export const selectWrongOptions = createSelector(
 
 export const selectRightOptions = createSelector(
   selectGameState,
-  (gameState) => gameState?.rightAnswers
+  (gameState) => gameState?.rightAnswer
 );
