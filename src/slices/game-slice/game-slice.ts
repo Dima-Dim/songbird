@@ -1,8 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {ReduxStateEntities} from "../../reducers/reducers-config";
 import {QuestionsGenre} from "../../types/questions-types";
+import {scores} from "../../config";
 
 interface gameState {
+  currentScore: number;
   currentStep: number;
   stepComplete: boolean;
   currentGenre: QuestionsGenre | null;
@@ -12,6 +14,7 @@ interface gameState {
 }
 
 const initialState: gameState = {
+  currentScore: 0,
   currentStep: 0,
   currentGenre: null,
   currentAnswer: null,
@@ -35,6 +38,7 @@ export const gameSlice = createSlice(
         if(action.payload.isRight) {
           stateRTK.rightAnswers = action.payload.id;
           stateRTK.stepComplete = true;
+          stateRTK.currentScore += scores.maxForStep - stateRTK.wrongAnswers.length;
         } else {
           stateRTK.wrongAnswers.push(action.payload.id);
         }

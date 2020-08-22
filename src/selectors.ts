@@ -10,6 +10,11 @@ export const selectQuestions = createSelector(
 
 const selectGameState = (state: RootState) => state?.game;
 
+export const selectCurrentScore = createSelector(
+  selectGameState,
+  (questionsState) => questionsState?.currentScore
+);
+
 export const selectCurrentStep = createSelector(
   selectGameState,
   (questionsState) => questionsState?.currentStep

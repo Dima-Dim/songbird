@@ -16,6 +16,11 @@ export const assetsUrl = {
   TEXT_FOLDER: "texts",
 };
 
+export const scores = {
+  maxForStep: 5,
+  decreaseForWrongAnswer: 1,
+};
+
 export const helperClassNames = {
   RIGHT: `right-item-for-sc`,
   WRONG: `wrong-item-for-sc`,
