@@ -1,75 +1,41 @@
 import * as React from "react";
+import {useDispatch} from "react-redux";
 import {answerOptionsSC as SC} from "./sc";
+import { QuestionOption } from "../../types/questions-types";
+import AnswerOption from "../answer-option/answer-option";
+import {rtkSlices} from "../../reducers/root-reducer";
 
 interface AnswerOptionsProps {
-
+  options: QuestionOption[];
 }
 
 const AnswerOptions: React.FC<AnswerOptionsProps> = (props) => {
+  const {
+    options,
+  } = props;
+
+  const dispatch = useDispatch();
+
+  const onChange = (evt: React.ChangeEvent<HTMLInputElement>): void => {
+    dispatch(rtkSlices.game.actions.changeCurrentAnswer(evt.target.id));
+  }
+
+  const getListItem = (data) => {
+    return data.map((option) => (
+      <SC.ITEM key={option.name.en}>
+        <AnswerOption
+          option={option}
+          onChange={onChange}
+        />
+      </SC.ITEM>
+    ))
+  };
+
   return (
     <SC.CONTAINER>
       <h2>Выберите правильный вариант</h2>
       <SC.LIST>
-        <SC.ITEM>
-          <input
-            id="Ворон"
-            type="radio"
-            name="answer"
-          />
-          <label htmlFor="Ворон">
-            Ворон
-          </label>
-        </SC.ITEM>
-        <SC.ITEM>
-          <input
-            id="Журавль"
-            type="radio"
-            name="answer"
-          />
-          <label htmlFor="Журавль">
-            Журавль
-          </label>
-        </SC.ITEM>
-        <SC.ITEM>
-          <input
-            id="Ласточка"
-            type="radio"
-            name="answer"
-          />
-          <label htmlFor="Ласточка">
-            Ласточка
-          </label>
-        </SC.ITEM>
-        <SC.ITEM>
-          <input
-            id="Козодой"
-            type="radio"
-            name="answer"
-          />
-          <label htmlFor="Козодой">
-            Козодой
-          </label>
-        </SC.ITEM>
-        <SC.ITEM>
-          <input
-            id="Кукушка"
-            type="radio"
-            name="answer"
-          />
-          <label htmlFor="Кукушка">
-            Кукушка
-          </label>
-        </SC.ITEM>
-        <SC.ITEM>
-          <input
-            id="Синица"
-            type="radio"
-            name="answer"
-          />
-          <label htmlFor="Синица">
-            Синица
-          </label>
-        </SC.ITEM>
+        {getListItem(options)}
       </SC.LIST>
     </SC.CONTAINER>
   );
