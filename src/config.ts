@@ -15,3 +15,8 @@ export const assetsUrl = {
   IMAGE_FOLDER: "images",
   TEXT_FOLDER: "texts",
 };
+
+export const helperClassNames = {
+  RIGHT: `right-item-for-sc`,
+  WRONG: `wrong-item-for-sc`,
+};

@@ -6,12 +6,15 @@ interface gameState {
   currentStep: number;
   currentGenre: QuestionsGenre | null;
   currentAnswer: number | null;
+  wrongAnswers: number[],
+  rightAnswers?: number,
 }
 
 const initialState: gameState = {
   currentStep: 0,
   currentGenre: null,
   currentAnswer: null,
+  wrongAnswers: [],
 };
 
 export const gameSlice = createSlice(
@@ -26,7 +29,15 @@ export const gameSlice = createSlice(
         stateRTK.currentGenre = action.payload;
       },
       changeCurrentAnswer: (stateRTK, action) => {
-        stateRTK.currentAnswer = action.payload;
+        stateRTK.currentAnswer = action.payload.id;
+        if(action.payload.isRight) {
+          stateRTK.rightAnswers = action.payload.id;
+        } else {
+          stateRTK.wrongAnswers.push(action.payload.id);
+        }
+      },
+      changeWrongAnswer: (stateRTK, action) => {
+        stateRTK.wrongAnswers.push(action.payload);
       },
     },
   }

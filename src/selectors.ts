@@ -32,3 +32,13 @@ export const selectCurrentOptions = createSelector(
   selectQuestions,
   (currentGenre, currentOptionId, questions) => currentOptionId && currentGenre && questions && questions[currentGenre].options[currentOptionId]
 );
+
+export const selectWrongOptions = createSelector(
+  selectGameState,
+  (gameState) => gameState?.wrongAnswers
+);
+
+export const selectRightOptions = createSelector(
+  selectGameState,
+  (gameState) => gameState?.rightAnswers
+);

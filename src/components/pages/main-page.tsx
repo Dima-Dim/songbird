@@ -31,7 +31,7 @@ const MainPage: React.FC = () => {
     dispatch(rtkSlices.game.actions.changeCurrentGenre(currentGenre));
   }, [currentGenre])
 
-  const rightOptionId = getRandomInt(options?.length);
+  const rightOptionId = React.useMemo(() => getRandomInt(options?.length), [options, currentStep]);
   const rightOption = (rightOptionId || rightOptionId === 0) ? options[rightOptionId] : null;
   const currentOption = useSelector(selectCurrentOptions);
 
@@ -45,6 +45,7 @@ const MainPage: React.FC = () => {
         {options && (
           <AnswerOptions
             options={options}
+            rightOptionId={rightOptionId}
           />
         )}
         {currentOption && (
