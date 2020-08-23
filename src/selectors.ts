@@ -35,6 +35,12 @@ const selectCurrentGenre = createSelector(
   (questionsState) => questionsState?.currentGenre
 );
 
+export const selectOptionsForCurrentGenre = createSelector(
+  selectQuestions,
+  selectCurrentGenre,
+  (questions, currentGenre) => currentGenre && questions[currentGenre]?.options
+);
+
 const selectCurrentOptionId = createSelector(
   selectGameState,
   (questionsState) => questionsState?.currentAnswer
@@ -52,7 +58,7 @@ export const selectWrongOptions = createSelector(
   (gameState) => gameState?.wrongAnswers
 );
 
-export const selectRightOptions = createSelector(
+export const selectRightOption = createSelector(
   selectGameState,
   (gameState) => gameState?.rightAnswer
 );

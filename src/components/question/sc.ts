@@ -40,18 +40,13 @@ export const questionSC = {
     & > img {
       grid-column: 1/2;
       grid-row: 2/3;
-      width: 100px;
-      height: 120px;
+      width: 100%;
+      height: 100%;
       object-fit: contain;
 
       @media(min-width: ${cssWidth.tablet.FULL}px) {
         grid-column: 1/2;
         grid-row: 1/-2;
-      }
-
-      @media(min-width: ${cssWidth.desktop.FULL}px) {
-        width: 212px;
-        height: 212px;
       }
     }
 
@@ -62,8 +57,9 @@ export const questionSC = {
 
     & > p {
       grid-column: 1/2;
-      margin: 0;
+      margin: 10px 0 0 0;
       padding: 0;
+      text-align: center;
 
       @media(min-width: ${cssWidth.tablet.FULL}px) {
         grid-row: -1/-2;

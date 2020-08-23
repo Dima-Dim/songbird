@@ -5,7 +5,7 @@ import {answerOptionsSC as SC} from "./sc";
 import {QuestionOption} from "../../types/questions-types";
 import AnswerOption from "../answer-option/answer-option";
 import {rtkSlices} from "../../reducers/root-reducer";
-import {selectRightOptions, selectWrongOptions} from "../../selectors";
+import {selectRightOption, selectWrongOptions} from "../../selectors";
 import { helperClassNames } from "../../config";
 
 interface AnswerOptionsProps {
@@ -21,7 +21,7 @@ const AnswerOptions: React.FC<AnswerOptionsProps> = (props) => {
 
   const dispatch = useDispatch();
   const wrongAnswers = useSelector(selectWrongOptions);
-  const rightAnswer = useSelector(selectRightOptions);
+  const rightAnswer = useSelector(selectRightOption);
 
   const onChange = (evt: React.ChangeEvent<HTMLInputElement>): void => {
     const isRight = rightOptionId.toString() === evt.target.id.toString();
