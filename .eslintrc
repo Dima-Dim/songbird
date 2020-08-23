@@ -134,6 +134,12 @@
           "ctx"
         ]
       }
+    ],
+    "no-unused-expressions": [
+      "error",
+      {
+        "allowTernary": true
+      }
     ]
   }
 }
