@@ -19,7 +19,6 @@ const Question: React.FC<QuestionProps> = (props) => {
 
   const dispatch = useDispatch();
 
-  // const stepComplete = useSelector(selectStepComplete);
   const optionsForCurrentGenre = useSelector(selectOptionsForCurrentGenre);
   const rightOption = useSelector(selectRightOption);
   const rightOptions = rightOption && optionsForCurrentGenre[rightOption]

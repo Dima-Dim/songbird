@@ -25,11 +25,6 @@ export const selectCurrentStep = createSelector(
   (questionsState) => questionsState?.currentStep
 );
 
-export const selectStepComplete = createSelector(
-  selectGameState,
-  (questionsState) => questionsState?.stepComplete
-);
-
 const selectCurrentGenre = createSelector(
   selectGameState,
   (questionsState) => questionsState?.currentGenre

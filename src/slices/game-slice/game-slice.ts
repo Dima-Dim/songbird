@@ -6,7 +6,6 @@ import {scores} from "../../config";
 interface gameState {
   currentScore: number;
   currentStep: number;
-  stepComplete: boolean;
   currentGenre: QuestionsGenre | null;
   currentAnswer: number | null;
   wrongAnswers: number[],
@@ -16,7 +15,6 @@ interface gameState {
 const initialState: gameState = {
   currentScore: 0,
   currentStep: 0,
-  stepComplete: false,
   currentGenre: null,
   currentAnswer: null,
   wrongAnswers: [],
@@ -28,7 +26,6 @@ export const gameSlice = createSlice(
     initialState,
     reducers: {
       changeStep: (stateRTK) => {
-        stateRTK.stepComplete = false;
         stateRTK.currentAnswer = null;
         stateRTK.wrongAnswers = [];
         stateRTK.currentStep += 1;
@@ -41,7 +38,6 @@ export const gameSlice = createSlice(
         stateRTK.currentAnswer = action.payload.id;
         if(action.payload.isRight) {
           stateRTK.rightAnswer = action.payload.id;
-          stateRTK.stepComplete = true;
           stateRTK.currentScore += scores.maxForStep - stateRTK.wrongAnswers.length;
         } else {
           stateRTK.wrongAnswers.push(action.payload.id);
