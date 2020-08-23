@@ -14,6 +14,8 @@ export const assetsUrl = {
   AUDIO_FOLDER: "tracks",
   IMAGE_FOLDER: "images",
   TEXT_FOLDER: "texts",
+  WRONG_ANSWER_AUDIO_FILE: "wrong.mp3",
+  RIGHT_ANSWER_AUDIO_FILE: "right.mp3",
 };
 
 export const scores = {
