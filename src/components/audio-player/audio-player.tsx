@@ -26,7 +26,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
   const [volume, setVolume] = useState(DEFAULT_AUDIO_VOLUME);
 
   if (audioRef?.current?.volume) {
-    audioRef.current.volume = Number(volume)/100;
+    audioRef.current.volume = Number(volume)/100 || 0.001;
   }
 
   const handlePlayBtnClick = () => {
