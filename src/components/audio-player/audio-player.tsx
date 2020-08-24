@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useRef, useState} from "react";
 import VisualizeAudio from "../visualize-audio/visualize-audio";
-import {audioVisualization} from "../../config";
+import {audioVisualization, DEFAULT_AUDIO_VOLUME} from "../../config";
 import {audioPlayerSC as SC} from "./sc";
 
 interface AudioPlayerProps {
@@ -20,8 +20,14 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
   } = props;
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioContext = new (window.AudioContext)();
 
   const [isPlayed, setIsPlayed] = useState(false);
+  const [volume, setVolume] = useState(DEFAULT_AUDIO_VOLUME);
+
+  if (audioRef?.current?.volume) {
+    audioRef.current.volume = Number(volume)/100;
+  }
 
   const handlePlayBtnClick = () => {
     if (audioRef.current) {
@@ -35,6 +41,14 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
       });
     }
   };
+
+  const handleChangeVolume = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = evt.currentTarget.value;
+
+    if (newVolume !== volume) {
+      setVolume(newVolume);
+    }
+  }
 
   return (
     <SC.CONTAINER
@@ -62,6 +76,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
         </audio>
         <VisualizeAudio
           src={src}
+          audioContext={audioContext}
           canvasWidth={canvasWidth}
           canvasHeight={canvasHeight}
           canvasPadding={audioVisualization.CANVAS_PADDING}
@@ -71,15 +86,19 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
         />
       </SC.PAPER>
       <SC.VOLUME>
-        <input
-          id="volume"
-          type="range"
-        />
-        <label
-          htmlFor="volume"
-        >
-          <span>Громкость</span>
-        </label>
+        <>
+          <input
+            id="volume"
+            type="range"
+            value={volume}
+            onChange={handleChangeVolume}
+          />
+          <label
+            htmlFor="volume"
+          >
+            <span>Громкость</span>
+          </label>
+        </>
       </SC.VOLUME>
     </SC.CONTAINER>
   );

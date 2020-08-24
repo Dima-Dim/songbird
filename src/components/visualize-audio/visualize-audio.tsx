@@ -3,6 +3,7 @@ import {drawOnCanvas} from "../../utils/draw-on-canvas/draw-on-canvas";
 
 interface VisualizeAudioProps {
   src: string;
+  audioContext: AudioContext;
   canvasWidth?: number;
   canvasHeight?: number;
   canvasPadding?: number;
@@ -14,6 +15,7 @@ interface VisualizeAudioProps {
 const VisualizeAudio: React.FC<VisualizeAudioProps> = (props) => {
   const {
     src,
+    audioContext,
     canvasWidth = 300,
     canvasHeight = 50,
     canvasPadding = 0,
@@ -22,7 +24,6 @@ const VisualizeAudio: React.FC<VisualizeAudioProps> = (props) => {
     strokeStyle = "#000000",
   } = props;
 
-  const audioContext = new (window.AudioContext)();
   const defaultBarsCount = 100;
 
   const canvasRef = React.useRef<HTMLCanvasElement>(null);

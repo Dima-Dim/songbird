@@ -5,6 +5,8 @@ export const audioVisualization = {
   STROKE_STYLE: "#76B6F0",
 };
 
+export const DEFAULT_AUDIO_VOLUME = "50";
+
 export const statusCodes = {
   OK: 200,
 };
