@@ -30,6 +30,10 @@ export const answerOptionsSC = {
       margin-left: 30px;
       background-color: #EDEDED;
     }
+
+    & fieldset {
+      display: contents;
+    }
   `,
   LIST: styled.ul`
     ${cssMixins.listReset()};
@@ -62,9 +66,10 @@ export const answerOptionsSC = {
       border-radius: 10px;
     }
 
-    & > label:hover,
-    & > label:focus {
+    & > input:not(:disabled) ~ label:hover,
+    & > input:not(:disabled) ~ label:focus {
       background-color: #EDEDED;
+      cursor: pointer;
     }
 
     &.${helperClassNames.WRONG} > label {

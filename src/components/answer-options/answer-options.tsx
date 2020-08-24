@@ -23,6 +23,7 @@ const AnswerOptions: React.FC<AnswerOptionsProps> = (props) => {
   const dispatch = useDispatch();
   const wrongAnswers = useSelector(selectWrongOptions);
   const rightAnswer = useSelector(selectRightOption);
+  const isAnswersDisabled = !!rightAnswer;
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -78,9 +79,13 @@ const AnswerOptions: React.FC<AnswerOptionsProps> = (props) => {
   return (
     <SC.CONTAINER>
       <h2>Выберите правильный вариант</h2>
-      <SC.LIST>
-        {getListItem(options)}
-      </SC.LIST>
+      <fieldset
+        disabled={isAnswersDisabled}
+      >
+        <SC.LIST>
+          {getListItem(options)}
+        </SC.LIST>
+      </fieldset>
       <audio
         ref={audioRef}
       >
