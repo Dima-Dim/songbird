@@ -1,5 +1,6 @@
 import {createSelector} from "@reduxjs/toolkit";
-import { RootState } from "./store";
+import {RootState} from "./store";
+import {QuestionsGenreData} from "./types/questions-types";
 
 const selectQuestionsState = (state: RootState) => state?.questions;
 
@@ -11,6 +12,11 @@ export const selectQuestions = createSelector(
 export const selectQuestionGenres = createSelector(
   selectQuestions,
   (questions) => questions && Object.keys(questions)
+);
+
+export const selectQuestionGenresTitles = createSelector(
+  selectQuestions,
+  (questions) => questions && Object.entries(questions)
 );
 
 const selectGameState = (state: RootState) => state?.game;
@@ -25,9 +31,43 @@ export const selectCurrentStep = createSelector(
   (questionsState) => questionsState?.currentStep
 );
 
-const selectCurrentGenre = createSelector(
+export const selectIsFinish = createSelector(
   selectGameState,
-  (questionsState) => questionsState?.currentGenre
+  (questionsState) => questionsState?.isFinish
+);
+
+export const selectCurrentOptions = createSelector(
+  selectQuestions,
+  selectCurrentStep,
+  (questionsSrc, currentStep) => {
+    if (questionsSrc) {
+      const questions = Object.entries<QuestionsGenreData>(questionsSrc)
+      const questionIndex = currentStep < (questions.length - 1)
+        ? currentStep
+        : (questions?.length - 1);
+
+      return questions[questionIndex][1]?.options
+    }
+
+    return null;
+  }
+);
+
+export const selectCurrentGenre = createSelector(
+  selectQuestions,
+  selectCurrentStep,
+  (questionsSrc, currentStep) => {
+    if (questionsSrc) {
+      const questions = Object.entries<QuestionsGenreData>(questionsSrc)
+      const questionIndex = currentStep < (questions.length - 1)
+        ? currentStep
+        : (questions?.length - 1);
+
+      return questions[questionIndex][0]
+    }
+
+    return null;
+  }
 );
 
 export const selectOptionsForCurrentGenre = createSelector(
@@ -41,7 +81,7 @@ const selectCurrentOptionId = createSelector(
   (questionsState) => questionsState?.currentAnswer
 );
 
-export const selectCurrentOptions = createSelector(
+export const selectCurrentOption = createSelector(
   selectCurrentGenre,
   selectCurrentOptionId,
   selectQuestions,

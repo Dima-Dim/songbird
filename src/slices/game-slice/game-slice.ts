@@ -10,6 +10,7 @@ interface gameState {
   currentAnswer: number | null;
   wrongAnswers: number[],
   rightAnswer?: number,
+  isFinish?: boolean,
 }
 
 const initialState: gameState = {
@@ -30,6 +31,17 @@ export const gameSlice = createSlice(
         stateRTK.wrongAnswers = [];
         stateRTK.currentStep += 1;
         delete stateRTK.rightAnswer;
+      },
+      restartGame: (stateRTK) => {
+        stateRTK.currentScore = 0;
+        stateRTK.currentStep = 0;
+        stateRTK.currentAnswer = null;
+        stateRTK.wrongAnswers = [];
+        delete stateRTK.rightAnswer;
+        delete stateRTK.isFinish;
+      },
+      changeIsFinish: (stateRTK) => {
+        stateRTK.isFinish = true;
       },
       changeCurrentGenre: (stateRTK, action) => {
         stateRTK.currentGenre = action.payload;

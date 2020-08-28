@@ -7,10 +7,10 @@ import AnswerDescription from "../answer-description/answer-description";
 import {mainData} from "../../context/main-data-context";
 import {ReduxStateEntities} from "../../reducers/reducers-config";
 import useGettingEntity from "../../hooks/use-getting-entity/use-getting-entity";
-import {selectQuestions, selectCurrentStep, selectCurrentOptions} from "../../selectors";
+import {selectCurrentStep, selectCurrentOptions, selectCurrentOption, selectCurrentGenre, selectIsFinish, selectQuestionGenres} from "../../selectors";
 import {getRandomInt} from "../../utils/get-random-int/get-random-int";
-import {QuestionsGenreData} from "../../types/questions-types";
 import {rtkSlices} from "../../reducers/root-reducer";
+import FinishScreen from "../finish-screen/finish-screen";
 
 const MainPage: React.FC = () => {
   const {
@@ -21,31 +21,36 @@ const MainPage: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  const questions = useSelector(selectQuestions);
   const currentStep = useSelector(selectCurrentStep);
+  const options = useSelector(selectCurrentOptions);
+  const currentGenre = useSelector(selectCurrentGenre);
+  const genres = useSelector(selectQuestionGenres);
 
-  const options = questions && Object.entries<QuestionsGenreData>(questions)[currentStep][1]?.options;
-  const currentGenre = questions && Object.entries<QuestionsGenreData>(questions)[currentStep][0];
+  const isLastStep = (genres && (currentStep + 1 === genres?.length));
+
+  const isFinish = useSelector(selectIsFinish);
 
   React.useEffect(() => {
     dispatch(rtkSlices.game.actions.changeCurrentGenre(currentGenre));
   }, [currentGenre])
 
-  const rightOptionId = React.useMemo(() => getRandomInt(options?.length), [options, currentStep]);
-  const rightOption = (rightOptionId || rightOptionId === 0) ? options[rightOptionId] : null;
-  const currentOption = useSelector(selectCurrentOptions);
-
+  const rightOptionId = React.useMemo(() => options && getRandomInt(options?.length), [options, currentStep]);
+  const rightOption = options && (rightOptionId || rightOptionId === 0) ? options[rightOptionId] : null;
+  const currentOption = useSelector(selectCurrentOption);
+  console.log("Правильный ответ: ", rightOption?.name?.ru);
   return (
     <>
       <Header/>
       <main>
         <Question
           question={rightOption}
+          isLastStep={isLastStep}
         />
-        {options && (
+        {options && rightOptionId !== null && (
           <AnswerOptions
             options={options}
             rightOptionId={rightOptionId}
+            isLastStep={isLastStep}
           />
         )}
         {currentOption && (
@@ -53,6 +58,7 @@ const MainPage: React.FC = () => {
             option={currentOption}
           />
         )}
+        {isFinish && <FinishScreen/>}
       </main>
     </>
   );

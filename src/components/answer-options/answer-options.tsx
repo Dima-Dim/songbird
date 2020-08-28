@@ -12,12 +12,14 @@ import {assetsUrl, helperClassNames} from "../../config";
 interface AnswerOptionsProps {
   options: QuestionOption[];
   rightOptionId: number;
+  isLastStep?: boolean;
 }
 
 const AnswerOptions: React.FC<AnswerOptionsProps> = (props) => {
   const {
     options,
     rightOptionId,
+    isLastStep = false,
   } = props;
 
   const dispatch = useDispatch();
@@ -42,12 +44,15 @@ const AnswerOptions: React.FC<AnswerOptionsProps> = (props) => {
 
   const onChange = (evt: React.ChangeEvent<HTMLInputElement>): void => {
     const isRight = rightOptionId.toString() === evt.target.id.toString();
+    dispatch(rtkSlices.game.actions.changeCurrentAnswer({id: evt.target.id, isRight}));
     if (isRight) {
       playAnswerSound("right");
+      if (isLastStep) {
+        dispatch(rtkSlices.game.actions.changeIsFinish());
+      }
     } else {
       playAnswerSound("wrong");
     }
-    dispatch(rtkSlices.game.actions.changeCurrentAnswer({id: evt.target.id, isRight}));
   };
 
   const getListItem = (data) => {

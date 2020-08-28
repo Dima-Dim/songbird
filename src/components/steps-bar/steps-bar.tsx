@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useSelector} from "react-redux";
 import {stepsBarSC as SC} from "./sc";
-import {selectCurrentStep, selectQuestionGenres} from "../../selectors";
+import {selectCurrentStep, selectQuestionGenres, selectQuestionGenresTitles} from "../../selectors";
 
 interface StepsBarProps {
 
@@ -12,28 +12,26 @@ const StepsBar: React.FC<StepsBarProps> = (props) => {
   const totalSteps = useSelector(selectQuestionGenres)?.length;
   const activeBarWidth = ((currentStep + 1) / totalSteps) * 100;
 
+  const genres = useSelector(selectQuestionGenresTitles);
+
+  const getItemMemo = React.useCallback((data) => {
+    const title = data.title.ru;
+    const key = data.title.en;
+
+    return (
+      <SC.ITEM
+        key={key}
+      >
+        {title}
+      </SC.ITEM>
+    );
+  }, []);
+
   return (
     <SC.LIST
       theme={{activeBarWidth}}
     >
-      <SC.ITEM>
-        Разминка
-      </SC.ITEM>
-      <SC.ITEM>
-        Воробьиные
-      </SC.ITEM>
-      <SC.ITEM>
-        Лесные птицы
-      </SC.ITEM>
-      <SC.ITEM>
-        Певчие птицы
-      </SC.ITEM>
-      <SC.ITEM>
-        Хищные птицы
-      </SC.ITEM>
-      <SC.ITEM>
-        Морские птицы
-      </SC.ITEM>
+      {genres?.map((genre) => getItemMemo(genre[1]))}
     </SC.LIST>
   );
 };

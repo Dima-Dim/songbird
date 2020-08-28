@@ -1,20 +1,21 @@
 import * as React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import classnames from "classnames";
 import AudioPlayer from "../audio-player/audio-player";
 import {questionSC as SC} from "./sc";
 import {QuestionOption} from "../../types/questions-types";
-import {assetsUrl, helperClassNames} from "../../config";
+import {assetsUrl} from "../../config";
 import {selectRightOption, selectOptionsForCurrentGenre} from "../../selectors";
 import {rtkSlices} from "../../reducers/root-reducer";
 
 interface QuestionProps {
   question: QuestionOption | null;
+  isLastStep?: boolean;
 }
 
 const Question: React.FC<QuestionProps> = (props) => {
   const {
     question,
+    isLastStep = false,
   } = props;
 
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const Question: React.FC<QuestionProps> = (props) => {
   const optionsForCurrentGenre = useSelector(selectOptionsForCurrentGenre);
   const rightOption = useSelector(selectRightOption);
   const rightOptions = rightOption && optionsForCurrentGenre[rightOption]
+  const isNextStepAvailable = (!isLastStep && (rightOption !== null && rightOption !== undefined));
 
   const audioSrc = question && `${assetsUrl.MAIN}/${assetsUrl.AUDIO_FOLDER}/${question.audioFileUrl}`;
 
@@ -33,12 +35,10 @@ const Question: React.FC<QuestionProps> = (props) => {
     ? rightOptions.name.ru
     : "*****";
 
-  const nextStepBtnClassNames = classnames({
-    [helperClassNames.ACTIVE]: rightOption,
-  });
-
   const handleNextStepBtnClick = () => {
-    dispatch(rtkSlices.game.actions.changeStep());
+    if (!isLastStep) {
+      dispatch(rtkSlices.game.actions.changeStep());
+    }
   };
 
   return (
@@ -52,12 +52,11 @@ const Question: React.FC<QuestionProps> = (props) => {
       {audioSrc && (
         <AudioPlayer
           src={audioSrc}
+          key={audioSrc}
         />
       )}
       <SC.NEXT_STEP_BTN
-        className={nextStepBtnClassNames}
-        type="button"
-        disabled={!rightOption}
+        isDisabled={!isNextStepAvailable}
         onClick={handleNextStepBtnClick}
       >
         Следующий вопрос
