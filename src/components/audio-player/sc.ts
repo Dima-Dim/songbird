@@ -21,6 +21,7 @@ export const audioPlayerSC = {
 `,
   PLAY_BTN: styled.button`
     ${cssMixins.buttonReset()};
+    flex-shrink: 0;
     width: 50px;
     height: 50px;
     border-radius: 50%;

@@ -4,7 +4,6 @@ import {drawOnCanvas} from "../../utils/draw-on-canvas/draw-on-canvas";
 interface VisualizeAudioProps {
   src: string;
   audioContext: AudioContext;
-  canvasWidth?: number;
   canvasHeight?: number;
   canvasPadding?: number;
   lineWidth?: number;
@@ -16,7 +15,6 @@ const VisualizeAudio: React.FC<VisualizeAudioProps> = (props) => {
   const {
     src,
     audioContext,
-    canvasWidth = 300,
     canvasHeight = 50,
     canvasPadding = 0,
     lineWidth = 2,
@@ -26,8 +24,18 @@ const VisualizeAudio: React.FC<VisualizeAudioProps> = (props) => {
 
   const defaultBarsCount = 100;
 
+  const canvasContainerRef = React.useRef<HTMLDivElement>(null);
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
   const [canvas, setCanvas] = React.useState<HTMLCanvasElement | null>(null);
+
+  const [canvasWidth, setCanvasWidth] = React.useState<number>(0);
+
+  React.useEffect(() => {
+    const width = canvasContainerRef.current?.offsetWidth;
+    if (width) {
+      setCanvasWidth(width);
+    }
+  }, [canvasContainerRef.current?.offsetWidth]);
 
   React.useEffect(() => {
     if (canvasRef?.current) {
@@ -79,11 +87,16 @@ const VisualizeAudio: React.FC<VisualizeAudioProps> = (props) => {
   }
 
   return (
-    <canvas
-      width={canvasWidth}
-      height={canvasHeight}
-      ref={canvasRef}
-    />
+    <div
+      ref={canvasContainerRef}
+      style={{width: "100%"}}
+    >
+      <canvas
+        width={canvasWidth}
+        height={canvasHeight}
+        ref={canvasRef}
+      />
+    </div>
   );
 };
 

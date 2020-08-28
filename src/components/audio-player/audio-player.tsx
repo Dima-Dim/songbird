@@ -14,13 +14,12 @@ interface AudioPlayerProps {
 const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
   const {
     src,
-    canvasWidth = 100,
     canvasHeight = 50,
     className,
   } = props;
 
-  const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioContext = new (window.AudioContext)();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const [isPlayed, setIsPlayed] = useState(false);
   const [volume, setVolume] = useState(DEFAULT_AUDIO_VOLUME);
@@ -32,9 +31,11 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
   const handlePlayBtnClick = () => {
     if (audioRef.current) {
       if (!isPlayed) {
-        audioRef.current.play();
+        audioContext.resume()
+          .then(() => audioRef && audioRef?.current?.play());
       } else {
-        audioRef.current.pause();
+        audioContext.resume()
+          .then(() => audioRef && audioRef?.current?.pause());
       }
       setIsPlayed((s) => {
         return !s;
@@ -77,7 +78,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
         <VisualizeAudio
           src={src}
           audioContext={audioContext}
-          canvasWidth={canvasWidth}
           canvasHeight={canvasHeight}
           canvasPadding={audioVisualization.CANVAS_PADDING}
           lineWidth={audioVisualization.LINE_WIDTH}
