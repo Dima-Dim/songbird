@@ -111,15 +111,15 @@ const VisualizeAudio: React.FC<VisualizeAudioProps> = (props) => {
         ref={canvasRef}
       />
       <input
-        id="volume"
+        id="progress"
         type="range"
         value={progressPercent}
         onChange={handleChangeCurrentAudioTime}
       />
       <label
-        htmlFor="volume"
+        htmlFor="progress"
       >
-        <span>Громкость</span>
+        <span>Прогресс воспроизведения аудио файла</span>
       </label>
     </SC.CONTAINER>
   );
