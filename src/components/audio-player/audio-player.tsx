@@ -9,6 +9,7 @@ interface AudioPlayerProps {
   canvasWidth?: number;
   canvasHeight?: number;
   className?: string;
+  togglePause?: boolean;
 }
 
 const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
@@ -16,6 +17,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
     src,
     canvasHeight = 50,
     className,
+    togglePause,
   } = props;
 
   const audioContext = new (window.AudioContext)();
@@ -53,6 +55,13 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
       setVolume(newVolume);
     }
   }
+
+  React.useEffect(() => {
+    if (togglePause) {
+      audioRef?.current?.pause();
+      setIsPlayed(false);
+    }
+  }, [togglePause]);
 
   return (
     <SC.CONTAINER
