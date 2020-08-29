@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {cssMixins} from "../../styled-components/mixins";
-import { cssFonts } from "../../styled-components/variables";
+import {cssFonts, cssWidth} from "../../styled-components/variables";
+import {helperClassNames} from "../../config";
 
 export const stepsBarSC = {
   LIST: styled.ul`
@@ -35,14 +36,25 @@ export const stepsBarSC = {
       const str: string[] = [];
       const {activeBarWidth} = props.theme;
 
-    if (activeBarWidth) {
+      if (activeBarWidth) {
         str.push(`width: ${activeBarWidth}%;`);
       }
       return str.join("\n");
     }};
-    }
+  }
   `,
   ITEM: styled.li`
     ${cssFonts.text.normal.LIGHT};
+
+    &.${helperClassNames.ACTIVE} {
+      color: #9676F0;
+      ${cssFonts.text.normal.BOLD};
+    }
+
+    @media(max-width: ${cssWidth.tablet.FULL - 1}px) {
+      &:not(.${helperClassNames.ACTIVE}) {
+        ${cssMixins.visuallyHidden()};
+      }
+    }
   `,
 };
