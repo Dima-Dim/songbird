@@ -13,7 +13,7 @@ const Header: React.FC<HeaderProps> = (props) => {
 
   return (
     <SC.HEADER>
-      <h1>Угадай птицу по пению</h1>
+      <h1>Угадай книгу по отрывку</h1>
       <SC.SCORE_TITLE>Ваш счёт:</SC.SCORE_TITLE>
       <SC.SCORE_COUNT>{currentStep}</SC.SCORE_COUNT>
       <StepsBar/>
