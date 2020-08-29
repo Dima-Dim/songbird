@@ -5,6 +5,7 @@ export const finishScreenSC = {
   CONTAINER: styled.div`
     box-sizing: border-box;
     width: 320px;
+    margin: 0 auto;
     padding: 20px;
     text-align: center;
     background-color: #ffffff;

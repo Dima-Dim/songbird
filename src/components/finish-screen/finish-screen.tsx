@@ -1,7 +1,6 @@
 import * as React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {finishScreenSC as SC} from "./sc";
-import Modal from "../modal/modal";
 import {selectCurrentScore, selectQuestionGenres} from "../../selectors";
 import {scores} from "../../config";
 import {rtkSlices} from "../../reducers/root-reducer";
@@ -46,12 +45,10 @@ const FinishScreen: React.FC<FinishScreenProps> = (props) => {
     )
 
   return (
-    <Modal>
-      <SC.CONTAINER>
-        <h2>Результат игры</h2>
-        {content}
-      </SC.CONTAINER>
-    </Modal>
+    <SC.CONTAINER>
+      <h2>Результат игры</h2>
+      {content}
+    </SC.CONTAINER>
   );
 };
 

@@ -37,11 +37,10 @@ const MainPage: React.FC = () => {
   const rightOptionId = React.useMemo(() => options && getRandomInt(options?.length), [options, currentStep]);
   const rightOption = options && (rightOptionId || rightOptionId === 0) ? options[rightOptionId] : null;
   const currentOption = useSelector(selectCurrentOption);
-  console.log("Правильный ответ: ", rightOption?.name?.ru);
-  return (
-    <>
-      <Header/>
-      <main>
+
+  const content = !isFinish
+    ? (
+      <>
         <Question
           question={rightOption}
           isLastStep={isLastStep}
@@ -53,12 +52,18 @@ const MainPage: React.FC = () => {
             isLastStep={isLastStep}
           />
         )}
-        {currentOption && (
-          <AnswerDescription
-            option={currentOption}
-          />
-        )}
-        {isFinish && <FinishScreen/>}
+        <AnswerDescription
+          option={currentOption}
+        />
+      </>
+    )
+    : (<FinishScreen/>);
+
+  return (
+    <>
+      <Header/>
+      <main>
+        {content}
       </main>
     </>
   );

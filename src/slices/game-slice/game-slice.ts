@@ -51,7 +51,7 @@ export const gameSlice = createSlice(
         if(action.payload.isRight) {
           stateRTK.rightAnswer = action.payload.id;
           stateRTK.currentScore += scores.maxForStep - stateRTK.wrongAnswers.length;
-        } else {
+        } else if (action.payload.isRight === false) {
           stateRTK.wrongAnswers.push(action.payload.id);
         }
       },

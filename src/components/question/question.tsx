@@ -23,7 +23,8 @@ const Question: React.FC<QuestionProps> = (props) => {
   const optionsForCurrentGenre = useSelector(selectOptionsForCurrentGenre);
   const rightOption = useSelector(selectRightOption);
   const rightOptions = rightOption && optionsForCurrentGenre[rightOption]
-  const isNextStepAvailable = (!isLastStep && (rightOption !== null && rightOption !== undefined));
+  const isNextStepAvailable = (rightOption !== null && rightOption !== undefined);
+  const rightAnswer = useSelector(selectRightOption);
 
   const audioSrc = question && `${assetsUrl.MAIN}/${assetsUrl.AUDIO_FOLDER}/${question.audioFileUrl}`;
 
@@ -38,8 +39,16 @@ const Question: React.FC<QuestionProps> = (props) => {
   const handleNextStepBtnClick = () => {
     if (!isLastStep) {
       dispatch(rtkSlices.game.actions.changeStep());
+    } else {
+      dispatch(rtkSlices.game.actions.changeIsFinish());
     }
   };
+
+  React.useEffect(() => {
+    if (question?.name?.ru) {
+      console.log("Правильный ответ: ", question?.name?.ru);
+    }
+  }, [question?.name?.ru]);
 
   return (
     <SC.CONTAINER>
@@ -51,6 +60,7 @@ const Question: React.FC<QuestionProps> = (props) => {
       <p>{name}</p>
       {audioSrc && (
         <AudioPlayer
+          togglePause={!!rightAnswer}
           src={audioSrc}
           key={audioSrc}
         />
