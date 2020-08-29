@@ -25,17 +25,20 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
   const [volume, setVolume] = useState(DEFAULT_AUDIO_VOLUME);
 
   if (audioRef?.current?.volume) {
-    audioRef.current.volume = Number(volume)/100 || 0.001;
+    audioRef.current.volume = Number(volume) / 100 || 0.001;
   }
 
   const handlePlayBtnClick = () => {
     if (audioRef.current) {
       if (!isPlayed) {
         audioContext.resume()
-          .then(() => audioRef && audioRef?.current?.play());
+          .then(() => audioRef && audioRef?.current?.play()
+            .catch((error) => console.log(error)))
+          .catch((error) => console.log(error));
       } else {
         audioContext.resume()
-          .then(() => audioRef && audioRef?.current?.pause());
+          .then(() => audioRef && audioRef?.current?.pause())
+          .catch((error) => console.log(error));
       }
       setIsPlayed((s) => {
         return !s;
