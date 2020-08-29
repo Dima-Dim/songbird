@@ -6,11 +6,7 @@ import {scores} from "../../config";
 import {rtkSlices} from "../../reducers/root-reducer";
 import CompanyBtn from "../company-btn/company-btn";
 
-interface FinishScreenProps {
-
-}
-
-const FinishScreen: React.FC<FinishScreenProps> = (props) => {
+const FinishScreen: React.FC = () => {
   const dispatch = useDispatch();
 
   const currentScore = useSelector(selectCurrentScore);

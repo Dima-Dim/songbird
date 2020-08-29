@@ -5,11 +5,7 @@ import {stepsBarSC as SC} from "./sc";
 import {selectCurrentStep, selectQuestionGenres, selectQuestionGenresTitles} from "../../selectors";
 import {helperClassNames} from "../../config";
 
-interface StepsBarProps {
-
-}
-
-const StepsBar: React.FC<StepsBarProps> = (props) => {
+const StepsBar: React.FC = () => {
   const currentStep = useSelector(selectCurrentStep);
   const totalSteps = useSelector(selectQuestionGenres)?.length;
   const activeBarWidth = ((currentStep + 1) / totalSteps) * 100;

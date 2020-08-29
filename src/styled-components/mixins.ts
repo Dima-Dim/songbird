@@ -23,65 +23,6 @@ export const cssMixins = {
     `);
   },
   animation: {
-    TRANSITION_GROUP: (props: TransitionGroupProps = {appear: null, enter: null, exit: null}): string => {
-      const {
-        appear = null,
-        enter = null,
-        exit = null,
-      } = props;
-
-      const getDirection = (data: AnimationDirections, active?: string): string => {
-        switch (data) {
-          case "bottomToTop":
-            return !active ? "translate(0, 50%);" : "transform: translate(0, 0);";
-
-          case "rightToLeft":
-            return !active ? "transform: translate(30%, 0);" : "transform: translate(0, 0);";
-
-          default:
-            return !active ? "translate(0, 50%);" : "transform: translate(0, 0);";
-        }
-      }
-
-      return (
-        `
-        & .transition-appear {
-          opacity: 0.01;
-          ${getDirection(appear)}
-        }
-
-        & .transition-appear-active {
-          opacity: 1;
-          ${getDirection(appear, `active`)}
-        }
-
-        & .transition-enter {
-          opacity: 0.01;
-          ${getDirection(enter)}
-        }
-
-        & .transition-enter-active {
-          opacity: 1;
-          ${getDirection(enter, `active`)}
-        }
-
-        & .transition-exit {
-          opacity: 1;
-          ${getDirection(exit)}
-        }
-
-        & .transition-exit-active {
-          margin: 0;
-          padding: 0;
-          opacity: 0.01;
-          ${getDirection(exit, `active`)}
-          transition-delay: 0ms, 150ms, 150ms, 150ms;
-          transition-property: all, padding, height, margin;
-          transition-duration: 500ms, 600ms, 600ms, 600ms;
-          transition-timing-function: cubic-bezier(0.0, 0, 0.2, 1), cubic-bezier(1,0,.3,1), cubic-bezier(1,0,.3,1), cubic-bezier(1,0,.3,1);
-        }`
-      )
-    },
     SIMPLE: (duration = "200"): string => {
       return (
         `

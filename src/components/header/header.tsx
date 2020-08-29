@@ -4,11 +4,7 @@ import {headerSC as SC} from "./sc";
 import StepsBar from "../steps-bar/steps-bar";
 import {selectCurrentScore} from "../../selectors";
 
-interface HeaderProps {
-
-}
-
-const Header: React.FC<HeaderProps> = (props) => {
+const Header: React.FC = () => {
   const currentStep = useSelector(selectCurrentScore);
 
   return (
