@@ -11,9 +11,12 @@ const UseGettingTextFromUrl = (props: UseGettingTextFromUrlProps): string | unde
 
   const [text, setText] = React.useState<string>();
 
-  fetch(url)
-    .then((response) => response.text()) // The response is always decoded using UTF-8.
-    .then((data) => {setText(data)});
+  React.useEffect(() => {
+    fetch(url)
+      .then((response) => response.text()) // The response is always decoded using UTF-8.
+      .then((data) => {setText(data)})
+      .catch((error) => console.log(error));
+  }, [url])
 
   return text;
 };
