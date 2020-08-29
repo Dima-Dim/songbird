@@ -25,8 +25,11 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
 
   const [isPlayed, setIsPlayed] = useState(false);
   const [volume, setVolume] = useState(DEFAULT_AUDIO_VOLUME);
+  const [currentAudioTime, setCurrentAudioTime] = useState(0);
+  const [audioDuration, setAudioDuration] = useState(0);
 
   const audioPlayer = audioRef?.current;
+  const duration = audioPlayer?.duration;
 
   if (audioPlayer?.volume) {
     audioPlayer.volume = Number(volume) / 100 || 0.001;
@@ -38,6 +41,20 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
 
   const handlePlay = () => {
     setIsPlayed(true);
+  };
+
+  React.useEffect(() => {
+    if (duration && audioDuration !== duration) {
+      setAudioDuration(duration);
+    }
+  }, [duration]);
+
+  const handleTimeUpdate = (evt: React.ChangeEvent<HTMLAudioElement>) => {
+    const roundCurrentTime = Number(evt.target.currentTime.toFixed(2));
+
+    if (currentAudioTime !== roundCurrentTime) {
+      setCurrentAudioTime(roundCurrentTime);
+    }
   };
 
   const handlePlayBtnClick = () => {
@@ -69,6 +86,13 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
     }
   }, [togglePause]);
 
+  const handleProgressRangeChange = (value: number) => {
+    const newCurrentTime = audioDuration * value / 100;
+    if (audioPlayer) {
+      audioPlayer.currentTime = newCurrentTime;
+    }
+  };
+
   return (
     <SC.CONTAINER
       className={className}
@@ -84,6 +108,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
           ref={audioRef}
           onPause={handlePause}
           onPlay={handlePlay}
+          onTimeUpdate={handleTimeUpdate}
         >
           <source
             src={src}
@@ -98,11 +123,14 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
         <VisualizeAudio
           src={src}
           audioContext={audioContext}
+          audioDuration={audioDuration}
+          currentAudioTime={currentAudioTime}
           canvasHeight={canvasHeight}
           canvasPadding={audioVisualization.CANVAS_PADDING}
           lineWidth={audioVisualization.LINE_WIDTH}
           lineGapWidth={audioVisualization.LINE_GAP_WIDTH}
           strokeStyle={audioVisualization.STROKE_STYLE}
+          onProgressRangeChange={handleProgressRangeChange}
         />
       </SC.PAPER>
       <SC.VOLUME>

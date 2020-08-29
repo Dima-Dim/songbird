@@ -11,6 +11,7 @@ export const audioPlayerSC = {
     gap: 10px;
     margin-bottom: 20px;
     padding: 10px;
+    align-items: center;
     box-shadow: 0 0 30px rgba(219, 221, 222, 0.6);
     border-radius: 10px;
 

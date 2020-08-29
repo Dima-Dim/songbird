@@ -1,28 +1,36 @@
 import * as React from "react";
 import {drawOnCanvas} from "../../utils/draw-on-canvas/draw-on-canvas";
+import {visualizeAudioSC as SC} from "./sc";
 
 interface VisualizeAudioProps {
   src: string;
   audioContext: AudioContext;
+  currentAudioTime: number;
+  audioDuration: number;
   canvasHeight?: number;
   canvasPadding?: number;
   lineWidth?: number;
   lineGapWidth?: number;
   strokeStyle?: string;
+  onProgressRangeChange?: (value: number) => void;
 }
 
 const VisualizeAudio: React.FC<VisualizeAudioProps> = (props) => {
   const {
     src,
     audioContext,
+    currentAudioTime,
+    audioDuration,
     canvasHeight = 50,
     canvasPadding = 0,
     lineWidth = 2,
     lineGapWidth = 1,
     strokeStyle = "#000000",
+    onProgressRangeChange,
   } = props;
 
   const defaultBarsCount = 100;
+  const progressPercent = currentAudioTime ? (currentAudioTime / audioDuration * 100).toFixed(2) : 0;
 
   const canvasContainerRef = React.useRef<HTMLDivElement>(null);
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
@@ -86,17 +94,34 @@ const VisualizeAudio: React.FC<VisualizeAudioProps> = (props) => {
       });
   }
 
+  const handleChangeCurrentAudioTime = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const {value} = evt.target;
+    if (onProgressRangeChange) {
+      onProgressRangeChange(Number(value));
+    }
+  };
+
   return (
-    <div
+    <SC.CONTAINER
       ref={canvasContainerRef}
-      style={{width: "100%"}}
     >
       <canvas
         width={canvasWidth}
         height={canvasHeight}
         ref={canvasRef}
       />
-    </div>
+      <input
+        id="volume"
+        type="range"
+        value={progressPercent}
+        onChange={handleChangeCurrentAudioTime}
+      />
+      <label
+        htmlFor="volume"
+      >
+        <span>Громкость</span>
+      </label>
+    </SC.CONTAINER>
   );
 };
 

@@ -4,7 +4,7 @@ interface DrawLineSegmentProps {
   y: number,
   height: number,
   lineWidth: number,
-  strokeStyle: string,
+  strokeStyle?: string,
 }
 
 export const drawLineSegment = (props: DrawLineSegmentProps): void => {
@@ -14,7 +14,7 @@ export const drawLineSegment = (props: DrawLineSegmentProps): void => {
     y,
     height,
     lineWidth,
-    strokeStyle,
+    strokeStyle = "#000000",
   } = props;
 
   ctx.lineWidth = lineWidth;
