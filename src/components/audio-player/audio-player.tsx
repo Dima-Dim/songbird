@@ -26,25 +26,32 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
   const [isPlayed, setIsPlayed] = useState(false);
   const [volume, setVolume] = useState(DEFAULT_AUDIO_VOLUME);
 
-  if (audioRef?.current?.volume) {
-    audioRef.current.volume = Number(volume) / 100 || 0.001;
+  const audioPlayer = audioRef?.current;
+
+  if (audioPlayer?.volume) {
+    audioPlayer.volume = Number(volume) / 100 || 0.001;
   }
+
+  const handlePause = () => {
+    setIsPlayed(false);
+  };
+
+  const handlePlay = () => {
+    setIsPlayed(true);
+  };
 
   const handlePlayBtnClick = () => {
     if (audioRef.current) {
       if (!isPlayed) {
         audioContext.resume()
-          .then(() => audioRef && audioRef?.current?.play()
+          .then(() => audioRef && audioPlayer?.play()
             .catch((error) => console.log(error)))
           .catch((error) => console.log(error));
       } else {
         audioContext.resume()
-          .then(() => audioRef && audioRef?.current?.pause())
+          .then(() => audioRef && audioPlayer?.pause())
           .catch((error) => console.log(error));
       }
-      setIsPlayed((s) => {
-        return !s;
-      });
     }
   };
 
@@ -58,8 +65,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
 
   React.useEffect(() => {
     if (togglePause) {
-      audioRef?.current?.pause();
-      setIsPlayed(false);
+      audioPlayer?.pause();
     }
   }, [togglePause]);
 
@@ -76,6 +82,8 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
         </SC.PLAY_BTN>
         <audio
           ref={audioRef}
+          onPause={handlePause}
+          onPlay={handlePlay}
         >
           <source
             src={src}
