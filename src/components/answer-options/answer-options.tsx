@@ -19,13 +19,11 @@ const AnswerOptions: React.FC<AnswerOptionsProps> = (props) => {
   const {
     options,
     rightOptionId,
-    isLastStep = false,
   } = props;
 
   const dispatch = useDispatch();
   const wrongAnswers = useSelector(selectWrongOptions);
   const rightAnswer = useSelector(selectRightOption);
-  const isAnswersDisabled = !!rightAnswer;
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -38,20 +36,22 @@ const AnswerOptions: React.FC<AnswerOptionsProps> = (props) => {
         ? audioRef.current.setAttribute("src", rightAudioSrc)
         : audioRef.current.setAttribute("src", wrongAudioSrc);
 
-      audioRef.current.play();
+      audioRef.current.play()
+        .catch((error) => console.log(error));
     }
   };
 
   const onChange = (evt: React.ChangeEvent<HTMLInputElement>): void => {
-    const isRight = rightOptionId.toString() === evt.target.id.toString();
-    dispatch(rtkSlices.game.actions.changeCurrentAnswer({id: evt.target.id, isRight}));
-    if (isRight) {
-      playAnswerSound("right");
-      if (isLastStep) {
-        dispatch(rtkSlices.game.actions.changeIsFinish());
+    if (!rightAnswer) {
+      const isRight = rightOptionId.toString() === evt.target.id.toString();
+      dispatch(rtkSlices.game.actions.changeCurrentAnswer({id: evt.target.id, isRight}));
+      if (isRight) {
+        playAnswerSound("right");
+      } else {
+        playAnswerSound("wrong");
       }
     } else {
-      playAnswerSound("wrong");
+      dispatch(rtkSlices.game.actions.changeCurrentAnswer({id: evt.target.id, isRight: null}));
     }
   };
 
@@ -73,7 +73,7 @@ const AnswerOptions: React.FC<AnswerOptionsProps> = (props) => {
           <AnswerOption
             option={option}
             optionId={index}
-            disabled={isWrong}
+            disabled={isWrong && !rightAnswer}
             onChange={onChange}
           />
         </SC.ITEM>
@@ -83,14 +83,10 @@ const AnswerOptions: React.FC<AnswerOptionsProps> = (props) => {
 
   return (
     <SC.CONTAINER>
-      <h2>Выберите правильный вариант</h2>
-      <fieldset
-        disabled={isAnswersDisabled}
-      >
-        <SC.LIST>
-          {getListItem(options)}
-        </SC.LIST>
-      </fieldset>
+      <h2>Варианты ответов</h2>
+      <SC.LIST>
+        {getListItem(options)}
+      </SC.LIST>
       <audio
         ref={audioRef}
       >
