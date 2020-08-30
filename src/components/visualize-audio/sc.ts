@@ -17,29 +17,26 @@ export const visualizeAudioSC = {
       overflow: hidden;
       appearance: none;
       background: transparent;
-      ${cssMixins.animation.SIMPLE()};
+      cursor: pointer;
     }
 
     & input[type="range"]::-webkit-slider-runnable-track {
       width: 100%;
       height: 100%;
-      ${cssMixins.animation.SIMPLE()};
     }
 
     & input[type="range"]::-moz-range-track {
       width: 100%;
       height: 100%;
-      ${cssMixins.animation.SIMPLE()};
     }
 
     & input[type="range"]::-webkit-slider-thumb {
       appearance: none;
-      width: 3px;
+      width: 1px;
       height: 100%;
       margin: 0;
-      background-color: rgba(0, 0, 0, 0.5);
-      cursor: grab;
-      ${cssMixins.animation.SIMPLE()};
+      padding: 0;
+      background: transparent;
     }
 
     & label {

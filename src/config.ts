@@ -2,7 +2,10 @@ export const audioVisualization = {
   CANVAS_PADDING: 0,
   LINE_WIDTH: 2,
   LINE_GAP_WIDTH: 1,
-  STROKE_STYLE: "#76B6F0",
+  STROKE_STYLE: {
+    DEFAULT: "#A0A0A0",
+    READY: "#76B6F0",
+  },
 };
 
 export const DEFAULT_AUDIO_VOLUME = "50";

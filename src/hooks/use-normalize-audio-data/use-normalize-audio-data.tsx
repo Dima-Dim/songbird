@@ -41,7 +41,7 @@ const useNormalizeAudioData = (props: UseNormalizeAudioDataProps): number[] => {
       });
   }, []);
 
-  const DD = React.useCallback((data) => {
+  const setNormalizedAudioDataCallback = React.useCallback((data) => {
     const {
       src,
       audioCtx,
@@ -64,14 +64,14 @@ const useNormalizeAudioData = (props: UseNormalizeAudioDataProps): number[] => {
         return setNormalizedAudioData([]);
       })
       .catch((err) => {
-        throw new Error(err)
+        console.log(err);
       });
   }, []);
 
   React.useEffect(() => {
     const barsCount = getBarsCountFn();
     if (barsCount) {
-      DD({
+      setNormalizedAudioDataCallback({
         src: audioSrc,
         audioCtx: audioContext,
         filterDataFn: getFilterData,
@@ -79,7 +79,7 @@ const useNormalizeAudioData = (props: UseNormalizeAudioDataProps): number[] => {
         linesCount: barsCount,
       });
     }
-  }, [audioSrc, DD, getBarsCountFn, getFilterData, getNormalizeData]);
+  }, [audioSrc, setNormalizedAudioDataCallback, getBarsCountFn, getFilterData, getNormalizeData]);
 
   return normalizedAudionData;
 };

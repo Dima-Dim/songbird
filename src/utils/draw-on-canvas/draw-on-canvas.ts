@@ -1,11 +1,17 @@
 import {drawLineSegment} from "../draw-line-segment/draw-line-segment";
 
+export interface StrokeStyle {
+  DEFAULT: string;
+  READY: string;
+}
+
 interface DrawOnCanvasProps {
   normalizedData: number[];
   canvas: HTMLCanvasElement;
   canvasPadding: number;
   lineWidth: number,
-  strokeStyle: string;
+  progressPercent?: number;
+  strokeStyle: StrokeStyle;
 }
 
 export const drawOnCanvas = (props: DrawOnCanvasProps): void => {
@@ -14,6 +20,7 @@ export const drawOnCanvas = (props: DrawOnCanvasProps): void => {
     canvas,
     canvasPadding,
     lineWidth,
+    progressPercent,
     strokeStyle,
   } = props;
 
@@ -21,6 +28,7 @@ export const drawOnCanvas = (props: DrawOnCanvasProps): void => {
 
   if (ctx) {
     ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+
     const width = Math.floor(canvas.offsetWidth / normalizedData.length);
 
     normalizedData.forEach((it, i) => {
@@ -28,7 +36,12 @@ export const drawOnCanvas = (props: DrawOnCanvasProps): void => {
       const height = it * canvas.offsetHeight - canvasPadding * 2;
       const y = (canvas.offsetHeight - height) / 2;
 
-      drawLineSegment({ctx, x, y, height, lineWidth, strokeStyle});
+      const isReadyLine = progressPercent && progressPercent > (i / normalizedData.length * 100);
+      const currentStrokeStyle = isReadyLine
+        ? strokeStyle.READY
+        : strokeStyle.DEFAULT;
+
+      drawLineSegment({ctx, x, y, height, lineWidth, strokeStyle: currentStrokeStyle});
     });
   }
 };

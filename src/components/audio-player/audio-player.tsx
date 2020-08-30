@@ -23,13 +23,25 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
   const audioContext = new (window.AudioContext)();
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
+  const [audioPlayer, setAudioPlayer] = useState<HTMLAudioElement>();
   const [isPlayed, setIsPlayed] = useState(false);
   const [volume, setVolume] = useState(DEFAULT_AUDIO_VOLUME);
   const [currentAudioTime, setCurrentAudioTime] = useState(0);
   const [audioDuration, setAudioDuration] = useState(0);
 
-  const audioPlayer = audioRef?.current;
-  const duration = audioPlayer?.duration;
+  const handleAudioCanPlay = (evt: React.ChangeEvent<HTMLAudioElement>) => {
+    const player = evt.target;
+
+    if (player) {
+      setAudioPlayer(player);
+
+      const {duration} = player;
+
+      if (duration && audioDuration !== duration) {
+        setAudioDuration(duration);
+      }
+    }
+  };
 
   if (audioPlayer?.volume) {
     audioPlayer.volume = Number(volume) / 100 || 0.001;
@@ -42,12 +54,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
   const handlePlay = () => {
     setIsPlayed(true);
   };
-
-  React.useEffect(() => {
-    if (duration && audioDuration !== duration) {
-      setAudioDuration(duration);
-    }
-  }, [duration]);
 
   const handleTimeUpdate = (evt: React.ChangeEvent<HTMLAudioElement>) => {
     const roundCurrentTime = Number(evt.target.currentTime.toFixed(2));
@@ -109,6 +115,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
           onPause={handlePause}
           onPlay={handlePlay}
           onTimeUpdate={handleTimeUpdate}
+          onCanPlay={handleAudioCanPlay}
         >
           <source
             src={src}

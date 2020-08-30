@@ -1,5 +1,5 @@
 import * as React from "react";
-import {drawOnCanvas} from "../../utils/draw-on-canvas/draw-on-canvas";
+import {drawOnCanvas, StrokeStyle} from "../../utils/draw-on-canvas/draw-on-canvas";
 import {visualizeAudioSC as SC} from "./sc";
 import useNormalizeAudioData from "../../hooks/use-normalize-audio-data/use-normalize-audio-data";
 
@@ -12,7 +12,7 @@ interface VisualizeAudioProps {
   canvasPadding?: number;
   lineWidth?: number;
   lineGapWidth?: number;
-  strokeStyle?: string;
+  strokeStyle: StrokeStyle;
   onProgressRangeChange?: (value: number) => void;
 }
 
@@ -26,11 +26,11 @@ const VisualizeAudio: React.FC<VisualizeAudioProps> = (props) => {
     canvasPadding = 0,
     lineWidth = 2,
     lineGapWidth = 1,
-    strokeStyle = "#000000",
+    strokeStyle,
     onProgressRangeChange,
   } = props;
 
-  const progressPercent = currentAudioTime ? (currentAudioTime / audioDuration * 100).toFixed(2) : 0;
+  const progressPercent = currentAudioTime ? Number((currentAudioTime / audioDuration * 100).toFixed(2)) : 0;
 
   const canvasContainerRef = React.useRef<HTMLDivElement>(null);
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
@@ -59,7 +59,7 @@ const VisualizeAudio: React.FC<VisualizeAudioProps> = (props) => {
   const normalizeAudioData = useNormalizeAudioData({audioSrc, audioContext, getBarsCountFn: getBarsCount});
 
   if(canvas && normalizeAudioData.length) {
-    drawOnCanvas({normalizedData: normalizeAudioData, canvas, canvasPadding, lineWidth, strokeStyle});
+    drawOnCanvas({normalizedData: normalizeAudioData, canvas, canvasPadding, lineWidth, progressPercent, strokeStyle});
   }
 
   const handleChangeCurrentAudioTime = (evt: React.ChangeEvent<HTMLInputElement>) => {
