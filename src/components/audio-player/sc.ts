@@ -108,6 +108,7 @@ export const audioPlayerSC = {
         const shadowSize = `-${(thumbHeight - trackHeight) / 2}px`;
 
         const str: string[] = [];
+        // eslint-disable-next-line no-plusplus
         for(let i = 1; i < sliderWidth; i++) {
           str.push(`-${i}px 0 0 ${shadowSize} ${color}`);
         }
