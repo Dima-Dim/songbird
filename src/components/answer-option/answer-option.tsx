@@ -22,7 +22,7 @@ const AnswerOption: React.FC<AnswerOptionProps> = (props) => {
     <>
       <input
         id={optionId.toString()}
-        type="radio"
+        type="checkbox"
         name="answer"
         disabled={disabled}
         onChange={onChange}

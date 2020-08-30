@@ -62,8 +62,8 @@ export const answerOptionsSC = {
       border-radius: 10px;
     }
 
-    & > input:not(:disabled) + label:hover,
-    & > input:not(:disabled) + label:focus {
+    & > input:not(:disabled):hover + label,
+    & > input:not(:disabled):focus + label {
       background-color: #EDEDED;
       cursor: pointer;
     }
