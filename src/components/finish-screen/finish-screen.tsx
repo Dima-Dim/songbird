@@ -18,7 +18,7 @@ const FinishScreen: React.FC = () => {
     dispatch(rtkSlices.game.actions.restartGame());
   };
 
-  const getResultText = () => <p>Вы набрал {currentScore} баллов из {maxScore} возможных.</p>
+  const getResultText = () => <p>Вы набрали {currentScore} баллов из {maxScore} возможных.</p>
 
   const content = isWinner
     ? (

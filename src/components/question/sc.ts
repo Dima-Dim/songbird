@@ -66,6 +66,6 @@ export const questionSC = {
     }
   `,
   NEXT_STEP_BTN: styled(CompanyBtn)`
-    margin-top: 16px;
+    margin-top: 6px;
   `,
 };
