@@ -20,6 +20,7 @@ export const drawOnCanvas = (props: DrawOnCanvasProps): void => {
   const ctx = canvas.getContext("2d");
 
   if (ctx) {
+    ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
     const width = Math.floor(canvas.offsetWidth / normalizedData.length);
 
     normalizedData.forEach((it, i) => {

@@ -121,7 +121,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
           />
         </audio>
         <VisualizeAudio
-          src={src}
+          audioSrc={src}
           audioContext={audioContext}
           audioDuration={audioDuration}
           currentAudioTime={currentAudioTime}

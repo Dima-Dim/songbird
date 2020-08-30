@@ -1,9 +1,10 @@
 import * as React from "react";
 import {drawOnCanvas} from "../../utils/draw-on-canvas/draw-on-canvas";
 import {visualizeAudioSC as SC} from "./sc";
+import useNormalizeAudioData from "../../hooks/use-normalize-audio-data/use-normalize-audio-data";
 
 interface VisualizeAudioProps {
-  src: string;
+  audioSrc: string;
   audioContext: AudioContext;
   currentAudioTime: number;
   audioDuration: number;
@@ -17,7 +18,7 @@ interface VisualizeAudioProps {
 
 const VisualizeAudio: React.FC<VisualizeAudioProps> = (props) => {
   const {
-    src,
+    audioSrc,
     audioContext,
     currentAudioTime,
     audioDuration,
@@ -29,7 +30,6 @@ const VisualizeAudio: React.FC<VisualizeAudioProps> = (props) => {
     onProgressRangeChange,
   } = props;
 
-  const defaultBarsCount = 100;
   const progressPercent = currentAudioTime ? (currentAudioTime / audioDuration * 100).toFixed(2) : 0;
 
   const canvasContainerRef = React.useRef<HTMLDivElement>(null);
@@ -52,46 +52,14 @@ const VisualizeAudio: React.FC<VisualizeAudioProps> = (props) => {
     }
   }, [canvasRef]);
 
-  const barsCount = canvas ? Math.floor(canvas?.offsetWidth / (lineWidth + lineGapWidth)) : defaultBarsCount;
+  const getBarsCount = React.useCallback(() => {
+    return canvas?.offsetWidth && Math.floor(canvas?.offsetWidth / (lineWidth + lineGapWidth));
+  }, [canvas?.offsetWidth, lineGapWidth, lineWidth]);
 
-  const getNormalizeData = (filteredData: number[]): number[] => {
-    const multiplier = Math.max(...filteredData) ** -1;
-    return filteredData.map((n) => n * multiplier);
-  }
+  const normalizeAudioData = useNormalizeAudioData({audioSrc, audioContext, getBarsCountFn: getBarsCount});
 
-  const getFilterData = (audioBuffer: AudioBuffer): number[] => {
-    const rawData = audioBuffer.getChannelData(0);
-    const blockSize = Math.floor(rawData.length / barsCount);
-
-    return new Array(barsCount)
-      .fill(",")
-      .map((it, i) => {
-        const blockStart = blockSize * i; // the location of the first sample in the block
-        const sum = new Array(blockSize)
-          .fill(",")
-          .reduce((acc, it2, j) => acc + Math.abs(rawData[blockStart + j]), 0)
-
-        return (sum / blockSize); // divide the sum by the block size to get the average
-      });
-  };
-
-  if (canvas) {
-    fetch(src)
-      .then(response => response?.arrayBuffer())
-      .then(arrayBuffer => audioContext?.decodeAudioData(arrayBuffer))
-      .then(audioBuffer => {
-        if (audioBuffer) {
-          const filterData = getFilterData(audioBuffer);
-          const normalizedData = getNormalizeData(filterData);
-
-          return drawOnCanvas({normalizedData, canvas, canvasPadding, lineWidth, strokeStyle});
-        }
-
-        return null;
-      })
-      .catch((err) => {
-        throw new Error(err)
-      });
+  if(canvas && normalizeAudioData.length) {
+    drawOnCanvas({normalizedData: normalizeAudioData, canvas, canvasPadding, lineWidth, strokeStyle});
   }
 
   const handleChangeCurrentAudioTime = (evt: React.ChangeEvent<HTMLInputElement>) => {

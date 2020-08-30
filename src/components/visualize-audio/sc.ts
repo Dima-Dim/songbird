@@ -15,7 +15,6 @@ export const visualizeAudioSC = {
       margin: 0;
       padding: 0;
       overflow: hidden;
-      outline: none;
       appearance: none;
       background: transparent;
       ${cssMixins.animation.SIMPLE()};
