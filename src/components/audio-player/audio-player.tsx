@@ -21,7 +21,11 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
     togglePause,
   } = props;
 
-  const audioContext = new (window.AudioContext)();
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const AudioContext = (window.AudioContext || window.webkitAudioContext);
+  const audioContext = AudioContext && new AudioContext();
+
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const [audioPlayer, setAudioPlayer] = useState<HTMLAudioElement>();
@@ -65,16 +69,14 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
   };
 
   const handlePlayBtnClick = () => {
-    if (audioRef.current) {
+    audioContext.resume();
+    if (audioPlayer) {
       if (!isPlayed) {
-        audioContext.resume()
-          .then(() => audioRef && audioPlayer?.play()
-            .catch((error) => console.log(error)))
+        audioPlayer?.play()
+          .then(() => audioContext.resume())
           .catch((error) => console.log(error));
       } else {
-        audioContext.resume()
-          .then(() => audioRef && audioPlayer?.pause())
-          .catch((error) => console.log(error));
+        audioPlayer?.pause();
       }
     }
   };

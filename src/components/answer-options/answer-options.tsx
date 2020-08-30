@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import classnames from "classnames";
-import {useRef} from "react";
+import {useState} from "react";
 import {answerOptionsSC as SC} from "./sc";
 import {QuestionOption} from "../../types/questions-types";
 import AnswerOption from "../answer-option/answer-option";
@@ -25,18 +25,26 @@ const AnswerOptions: React.FC<AnswerOptionsProps> = (props) => {
   const wrongAnswers = useSelector(selectWrongOptions);
   const rightAnswer = useSelector(selectRightOption);
 
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [audioPlayer, setAudioPlayer] = useState<HTMLAudioElement>();
+
+  const handleAudioCanPlay = (evt: React.ChangeEvent<HTMLAudioElement>) => {
+    const player = evt.target;
+
+    if (player) {
+      setAudioPlayer(player);
+    }
+  };
 
   const rightAudioSrc = `${assetsUrl.MAIN}/${assetsUrl.AUDIO_FOLDER}/${assetsUrl.RIGHT_ANSWER_AUDIO_FILE}`;
   const wrongAudioSrc = `${assetsUrl.MAIN}/${assetsUrl.AUDIO_FOLDER}/${assetsUrl.WRONG_ANSWER_AUDIO_FILE}`;
 
   const playAnswerSound = (type: "right" | "wrong") => {
-    if (audioRef && audioRef?.current) {
+    if (audioPlayer) {
       type === "right"
-        ? audioRef.current.setAttribute("src", rightAudioSrc)
-        : audioRef.current.setAttribute("src", wrongAudioSrc);
+        ? audioPlayer.setAttribute("src", rightAudioSrc)
+        : audioPlayer.setAttribute("src", wrongAudioSrc);
 
-      audioRef.current.play()
+      audioPlayer.play()
         .catch((error) => console.log(error));
     }
   };
@@ -88,10 +96,10 @@ const AnswerOptions: React.FC<AnswerOptionsProps> = (props) => {
         {getListItem(options)}
       </SC.LIST>
       <audio
-        ref={audioRef}
+        onCanPlay={handleAudioCanPlay}
       >
         <source
-          src=""
+          src={wrongAudioSrc}
           type="audio/mpeg"
         />
         <track
