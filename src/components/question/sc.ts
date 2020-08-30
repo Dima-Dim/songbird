@@ -66,6 +66,12 @@ export const questionSC = {
     }
   `,
   NEXT_STEP_BTN: styled(CompanyBtn)`
-    margin-top: 6px;
+    @media(min-width: ${cssWidth.desktop.FULL}px) {
+      margin-top: 6px;
+    }
+
+    @media(min-width: ${cssWidth.desktop.FULL}px) {
+      margin-top: 18px;
+    }
   `,
 };

@@ -34,15 +34,13 @@ const AnswerDescription: React.FC<AnswerDescriptionProps> = (props) => {
           canvasWidth={100}
           key={audioSrc}
         />
-        <p>
+        <SC.TEXT>
           {description}
-        </p>
+        </SC.TEXT>
       </>
     )
     : (
-      <>
-        <p>Выберите верный вариант из списка ответов.</p>
-      </>
+      <SC.DUMMY>Выберите верный вариант из списка ответов.</SC.DUMMY>
     );
 
   return (

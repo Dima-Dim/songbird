@@ -57,18 +57,21 @@ export const answerDescriptionPropsSC = {
       ${cssFonts.h2.normal.LIGHT};
       font-style: italic;
     }
+  `,
+  TEXT: styled.p `
+    grid-column: 1/-1;
+    margin: 0;
+    padding: 0;
+    text-align: justify;
 
-    & > p {
-      grid-column: 1/-1;
-      margin: 0;
-      padding: 0;
-      text-align: justify;
-
-      @media(min-width: ${cssWidth.desktop.FULL}px) {
-        grid-column: -1/-2;
-        grid-row: 3/4;
-      }
+    @media(min-width: ${cssWidth.desktop.FULL}px) {
+      grid-column: -1/-2;
+      grid-row: 3/4;
     }
+  `,
+  DUMMY: styled.p `
+    grid-column: 1/-1;
+    grid-row: 2/3;
   `,
   AUDIO_PLAYER: styled(AudioPlayer)`
     @media(min-width: ${cssWidth.desktop.FULL}px) {
