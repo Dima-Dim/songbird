@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {cssMixins} from "../../styled-components/mixins";
 import { cssWidth } from "../../styled-components/variables";
+import {helperClassNames} from "../../config";
 
 export const audioPlayerSC = {
   CONTAINER: styled.div`
@@ -22,11 +23,34 @@ export const audioPlayerSC = {
 `,
   PLAY_BTN: styled.button`
     ${cssMixins.buttonReset()};
+    position: relative;
     flex-shrink: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     background: #76B6F0;
+
+    & > p {
+      ${cssMixins.visuallyHidden()};
+    }
+
+    &::before {
+      content: "";
+      display: block;
+      width: 23px;
+      height: 23px;
+      background-image: url("data:image/svg+xml,%3Csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 17'%3E%3Cpath d='M15 6.768c1.333.77 1.333 2.694 0 3.464L3.75 16.727c-1.333.77-3-.192-3-1.732V2.005c0-1.54 1.667-2.502 3-1.732L15 6.768z' fill='%23fff'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    &.${helperClassNames.ACTIVE}::before {
+      background-image: url("data:image/svg+xml,%3Csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='3.111' height='16' rx='1.556' transform='matrix(-1 0 0 1 8.11 4)' fill='%23fff'/%3E%3Crect width='3.111' height='16' rx='1.556' transform='matrix(-1 0 0 1 19 4)' fill='%23fff'/%3E%3C/svg%3E");
+    }
   `,
   VOLUME: styled.div`
     box-sizing: border-box;

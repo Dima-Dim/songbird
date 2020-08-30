@@ -1,7 +1,8 @@
 import * as React from "react";
 import {useRef, useState} from "react";
+import classNames from "classnames";
 import VisualizeAudio from "../visualize-audio/visualize-audio";
-import {audioVisualization, DEFAULT_AUDIO_VOLUME} from "../../config";
+import {audioVisualization, DEFAULT_AUDIO_VOLUME, helperClassNames} from "../../config";
 import {audioPlayerSC as SC} from "./sc";
 
 interface AudioPlayerProps {
@@ -99,12 +100,17 @@ const AudioPlayer: React.FC<AudioPlayerProps> = (props) => {
     }
   };
 
+  const playBtnClassNames = classNames({
+    [helperClassNames.ACTIVE]: isPlayed,
+  });
+
   return (
     <SC.CONTAINER
       className={className}
     >
       <SC.PAPER>
         <SC.PLAY_BTN
+          className={playBtnClassNames}
           type="button"
           onClick={handlePlayBtnClick}
         >
