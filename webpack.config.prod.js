@@ -10,16 +10,15 @@ const SpriteLoaderPlugin = require("svg-sprite-loader/plugin");
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 
 const config = (argv) => {
-  let buildHash = "";
-  let buildTimestamp = "";
-  let domainForMainData = "";
-  let commitSHA = "";
+  const hash = `[hash:7]`;
+  let buildHash = hash;
+  let buildTimestamp = Number(new Date());
+  let commitSHA = hash;
 
   if (argv.env) {
-    buildHash = "BUILD_HASH" in argv.env ? argv.env.BUILD_HASH : "";
-    buildTimestamp = "BUILD_TIMESTAMP" in argv.env ? argv.env.BUILD_TIMESTAMP : "";
-    domainForMainData = "DOMAIN_FOR_MAIN_DATA" in argv.env ? argv.env.DOMAIN_FOR_MAIN_DATA : "";
-    commitSHA = "COMMIT_SHA" in argv.env ? argv.env.COMMIT_SHA : "";
+    buildHash = "BUILD_HASH" in argv.env ? argv.env.BUILD_HASH : hash;
+    buildTimestamp = "BUILD_TIMESTAMP" in argv.env ? argv.env.BUILD_TIMESTAMP : buildTimestamp;
+    commitSHA = "COMMIT_SHA" in argv.env ? argv.env.COMMIT_SHA : hash;
   }
 
   const envKeys = {
@@ -27,7 +26,6 @@ const config = (argv) => {
     BACK_ENV: JSON.stringify(`production`),
     BUILD_HASH: JSON.stringify(buildHash),
     BUILD_TIMESTAMP: JSON.stringify(buildTimestamp),
-    DOMAIN_FOR_MAIN_DATA: JSON.stringify(domainForMainData),
     COMMIT_SHA: JSON.stringify(commitSHA),
   };
 

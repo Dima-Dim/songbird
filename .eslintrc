@@ -130,8 +130,15 @@
       {
         "props": true,
         "ignorePropertyModificationsForRegex": [
-          "stateRTK"
+          "stateRTK",
+          "ctx"
         ]
+      }
+    ],
+    "no-unused-expressions": [
+      "error",
+      {
+        "allowTernary": true
       }
     ]
   }
